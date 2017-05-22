@@ -1,0 +1,32 @@
+#mapdiv{
+   height: 100%;
+   width: 100%;
+}
+
+
+.leaflet-control-locate {
+  border:1px solid rgba(0,0,0,0.4);
+  }
+.leaflet-control-locate a {
+  background-color:#fff;
+  background-position:-3px, -2px;
+  }
+.leaflet-control-locate.active a {
+  background-position:-33px -2px;
+  }
+
+
+
+#select-baselayers, #map-legend-title, #map-legend-btn{
+	display: inline-table;
+	vertical-align: middle;
+}
+
+
+.map-notes-icon{
+	font-size: 200%;
+	color: #43B043;
+	display: inline-table;
+	padding-right: 3px;
+	font-weight: bolder; 
+}
