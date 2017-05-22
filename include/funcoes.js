@@ -61,6 +61,11 @@ function GetLinkOSMR(Lat,Lon) {
 	return Link;
 }
 
+function GetLinkMapillaryImg(ImgKey) {
+	var Link = "http://www.mapillary.com/map/im/" + ImgKey + "/photo";
+	return Link;
+}
+
 function GetLinkMapillary(Lat,Lon) {
 //	var Link = "http://www.mapillary.com/map/im/18/" + Lat + "/" + Lon;
 	var Link = "http://www.mapillary.com/map/search/" + Lat + "/" + Lon + "/13";
