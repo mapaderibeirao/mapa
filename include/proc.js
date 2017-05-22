@@ -1,7 +1,7 @@
 //initialization ************************************************************
-var MapHelpButton   = HrefFromURLPlus("http://edilqueirozdearaujo.github.io/conhecerosm/map/about.html","button short icon space-bottom1 help","Ajuda","","") + " ";
+var MapHelpButton   = HrefFromURLPlus("https://mapaderibeiraograndesp.wordpress.com/sobre/","button short icon space-bottom1 help","Ajuda","","") + " ";
 var MapAddLButton   = HrefFromURLPlus("#","button short icon space-bottom1 plus fill-green map-addl-button","Adicionar mapas","","") + " ";
-var MapHomeButton   = HrefFromURLPlus("http://conheceropenstreetmap.wordpress.com/","button short icon home space-bottom1 fill-green","Início","","") +" "; 
+var MapHomeButton   = HrefFromURLPlus("https://mapaderibeiraograndesp.wordpress.com/","button short icon home space-bottom1 fill-green","Início","","") +" "; 
 var LinksAlvo = "";
 var MapControlsInner = "";     //HTML que vai dentro do LegendControl ControlesDoMapa
 var MapaEmbutido = MapIsEmb();
