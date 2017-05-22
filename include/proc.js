@@ -317,7 +317,7 @@ map.on('overlayremove', function(e) {
 UserTempMarker.on('click', function(e) {
 	//pega coordenadas
 	var Zoom = map.getZoom();
-	var Link = LinkDoMapa(e.latlng.lat,e.latlng.lng,Zoom,'');
+	var Link = LinkDoMapa(e.latlng.lat,e.latlng.lng,Zoom,'mapa/');
 	var Msg = "<label><span class='icon marker'>Coordenadas:</label>"
             + "<textarea onclick='this.select()'>"+ e.latlng.lat+', '+ e.latlng.lng  +"</textarea>'"
 			+ '<p>' + Link + '</p>';
