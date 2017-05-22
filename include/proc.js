@@ -215,7 +215,7 @@ function MapillaryImgHref(Key) {
 	var Img = '<img width="99%" alt="foto..." src="' + MapillaryImg(Key,320)  + '" />';
 //	var Link = "http://mapillary.com/map/im/"+ Key +"/photo";
 //	var Link = GetLinkMapillaryView(Key,Lat,Lon,Zoom); DEPRECATED
-	var Link = GetLinkMapillary(Lat,Lon);
+	var Link = GetLinkMapillaryImg(Key);
 	return HrefFromURLPlus(Link,'','',Img,'_parent'); 
 }
 
