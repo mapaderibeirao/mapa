@@ -1,2 +1,2 @@
-# mapa
-Mapa de Ribeirão Grande - SP
+# Mapa de Ribeirão Grande SP
+É uma resposta ao Projeto RGM – Ribeirão Grande em Mapas. Oferece um mapa online voltado para pesquisa e comparação de dados, mapas de Ribeirão Grande para impressão, links para pesquisa extração de dados, streetview (caminhar nas ruas e qualquer lugar) procurando dentro de tudo isso divulgar o município e tecnologias usadas, destacando que quanto mais pessoas colaborarem, maior será o resultado.
