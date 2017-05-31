@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Mapas e muita informação sobre Ribeirão Grande - SP">
+   	<title>Mapa de Ribeirão Grande - SP</title> 
+	<link href="css/geral.css" rel="stylesheet" type="text/css"/>	
+	<link href="css/map.css" rel="stylesheet" type="text/css"/>	
+	<link rel="shortcut icon" href="img/favicon.png" />
+	<!-- Mapbox  -->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+
+	<link href='//mapbox.com/base/latest/base.css' rel='stylesheet' />
+	<script> 
+		L.mapbox.accessToken   = "pk.eyJ1IjoicHJvamV0b3JnbSIsImEiOiJqeVpremF3In0.SCxZ4ah9ZKxWcELgsKQyWA";
+		var MapillaryID =	"aUJQWHVRZ1J2UkUwRUhoZ2J6SURHUTo3OTY1ZmEyZWY3N2EyYjZl"; //https://a.mapillary.com/  
+	</script>
+
+	<!-- Mapbox Leaflet Locate plugin  -->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />	
+
+	<!-- Mapbox Leaflet Hash plugin  -->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
+
+	<!-- Leaflet Geocoder plugin > https://github.com/perliedman/leaflet-control-geocoder -->
+	<link rel="stylesheet" href="css/Control.Geocoder.css" />
+	<script src="include/Control.Geocoder.js"></script>	
+
+	<!-- Leaflet Layer OverPass plugin > https://github.com/kartenkarsten/leaflet-layer-overpass/ -->
+	<link rel="stylesheet" href="css/OverPassLayer.css" />
+	<script src="include/OverPassLayer.js"></script>	
+
+	<!-- Leaflet Heat plugin > https://github.com/kartenkarsten/leaflet-layer-overpass/ -->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
+
+	<!-- Leaflet MarkerCluster plugin > https://github.com/kartenkarsten/leaflet-layer-overpass/ -->
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+
+	<script src="include/jquery.min.js" ></script>
+	<script src='include/providers.js'></script>
+	<script src="include/funcoes.js"></script>
+	<script src="include/urlparams.js" ></script>
+
+</head>
+<body class="fill-dark">	
+<div id='geocode-selector'></div> 
+<div id='mapdiv'></div> 
+<script>
+		//Permite que usuario modifique camada de fundo por URL
+		var URLSetBaseLayer = null;
+		
+		//estilo de mapa por parâmetro - validação
+		var TestBaseLayer = $.urlParam('l');
+		if (TestBaseLayer!=null){ URLSetBaseLayer = TestBaseLayer;}         
+
+
+
+		var HeatLayer = L.heatLayer([], { minZoom: 5, maxZoom: 17 }); 
+		var ClusterLayer = new L.MarkerClusterGroup(); 
+		var RawOverlaysMB = []; //Overlays como dados brutos 
+		var OverlaysMB = []; //Feature layers 
+		var map = L.mapbox.map('mapdiv'); //Cria o mapa 
+		map.options.maxZoom = 19; 
+		map.setView([-24.1267,-48.3721], 11); 
+		var MapHash = L.hash(map); 
+		lMNK.addTo(map); 
+</script> 
+<script src='include/proc.js'></script> 
+<script> 
+  
+		//Foi solicitada mudança por URL?
+		if (URLSetBaseLayer!=null){ 
+			switch(URLSetBaseLayer) {
+				case 'satelite' : URLSetBaseLayer = 'lMBT'; break;					
+			}	
+			
+			if(BaselayersValidas.match(URLSetBaseLayer)){
+				$('#map-select-layer').val(URLSetBaseLayer);
+				$('#map-select-layer').change();
+			}
+		}
+  
+</script> 
+	
+	
+	
+</body>
+</html>
