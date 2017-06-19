@@ -1,6 +1,6 @@
 //initialization ************************************************************
 var MapHelpButton   = HrefFromURLPlus("https://mapaderibeiraograndesp.wordpress.com/sobre/","button short icon space-bottom1 help","Ajuda","","") + " ";
-var MapAddLButton   = HrefFromURLPlus("#","button short icon space-bottom1 plus fill-green map-addl-button","Adicionar mapas","","") + " ";
+var MapCompareButton = HrefFromURLPlus("#","button short space-bottom1 fill-green map-compare-button","Comparar mapa","Compare","") + " ";
 var MapHomeButton   = HrefFromURLPlus("https://mapaderibeiraograndesp.wordpress.com/","button short icon home space-bottom1 fill-green","Início","","") +" "; 
 var LinksAlvo = "";
 var MapControlsInner = "";     //HTML que vai dentro do LegendControl ControlesDoMapa
@@ -14,8 +14,6 @@ if ( MapaEmbutido ) {
 }
 
 var MapBaseLayersSelect = "<form id='map-controles' method='post' >"
-		+"<p><span class='dark'>"+MapAddLButton+"</span>"
-		+"<span class='icon layers'></span>"
 		+"<select id='map-select-layer' name='share-b'>"
 			+"<option value='lMNK' >OpenStreetMap</option>"  
 			+"<option value='lMKG' >OSM Tons de cinza</option>"
@@ -38,20 +36,12 @@ var MapBaseLayersSelect = "<form id='map-controles' method='post' >"
 			+"<option value='lSTT' >Stamen Toner Dark</option>"
 			+"<option value='lIBR' >IBGE Rural</option>"
 			+"<option value='lIBU' >IBGE Urbano</option>"
-		+"</select> "
+		+"</select> <br>"
 		+"<span class='dark'>"
+//                +  MapCompareButton 
 		+  MapHomeButton 
 		+  MapHelpButton
-		+"</span> </p>"				
-		+"<span class='dark map-controls-group space-bottom1'></span>"		
-		+"<input id='share-id' name='share-id' type='hidden' value='0'>"
-		//+"<input id='share-b'  name='share-b' type='hidden' value=''>"
-		+"<input id='share-o'  name='share-o' type='hidden' value=''>"
-		+"<input id='share-mb' name='share-mb' type='hidden' value=''>"
-		+"<input id='share-xyz' name='share-xyz'  type='hidden' value=''>"
-		+"<input id='share-tit' name='share-tit' type='hidden' value=''>"
-		+"<input id='share-dsc' name='share-dsc' type='hidden' value=''>"
-		+"<input id='map-recent' name='map-recent' type='hidden' value=''>"
+		+"</span>"
 		+"</form>";
 
 var ControlesDoMapa = new L.mapbox.LegendControl({position: 'topright'});
@@ -61,10 +51,19 @@ ControlesDoMapa.addLegend(MapBaseLayersSelect); //A seleção das camadas do map
 var BaselayersValidas = 'lMNK;lMKG;lMBL;lMBD;lOTD;lMBO;lCYL;lLSC;lTPD;lMBB;lMBP;lMBC;lMBR;lSTW;lSTL;lSTT;lMBW;lMBS;lMBT;lIBR;lIBU';
 
 
-function LinkDoMapa(Lat,Lon,Zoom,Dir){
+function LinkDoMapa(Lat,Lon,Zoom,Dir){	
 	var Host = "http://"+window.location.hostname;
 	var BaseLayer = BaseLayerAtual();
-	var PreLink = Host + Dir + '#' + Zoom + '/' + Lat + '/' + Lon + '&l=' + BaseLayer;	
+	
+	var CamadaDadosTemp = '';
+	if (CamadaDeDados !=null){ 
+	   CamadaDadosTemp = '&dados=' + CamadaDeDados;
+	}		
+	
+	var PreLink = Host + Dir + '#' + Zoom + '/' + Lat + '/' + Lon 
+	            + '&mlat=' + Lat + '&mlon=' + Lon
+	            + '&l=' + BaseLayer
+	            + CamadaDadosTemp;	
 	var Link    = HrefFromURLPlus(PreLink,"","Link","<span class='icon arrowright'>Link</span>",LinksAlvo);	
 	return Link;
 }
@@ -105,46 +104,38 @@ function ChangeLayer(Opcao) {
    map.addLayer(sLayer);
 }
 
-
+/*  DEPRECATED
 function MakeMapControls(Links) {
 	$(".map-controls-group").html(Links);
 }
+*/
 
-function AtualizarControlesDoMapa() {
-	//pega coordenadas
-	var Cnt = map.getCenter();
-	var Lat = Cnt.lat;
-	var Lon = Cnt.lng;
-	var Zoom = map.getZoom();
-	
+function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	PreLinkOSMR      = GetLinkOSMR(Lat,Lon); 
 	PreLinkMapillary = GetLinkMapillary(Lat,Lon);
 	PreLinkF4Map     = GetLinkF4Map(Lat,Lon);
-	PreLinkEcoMap    = GetLinkEcoMap(Lat,Lon);
 	PreLinkOSMe      = GetLinkOSMe(Lat,Lon);
 	PreLinkOSMd      = GetLinkOSMd(Lat,Lon);
-	PreLinkHistory   = GetLinkHistory(Lat,Lon,Zoom);
 	
-	LinkOSMR      = HrefFromURLPlus(PreLinkOSMR,     "button short icon car","Como chegar até aqui","",LinksAlvo);
-	LinkMapillary = HrefFromURLPlus(PreLinkMapillary,"button short icon video","Fotos e streetview","",LinksAlvo);
-	LinkF4Map     = HrefFromURLPlus(PreLinkF4Map,    "button short ","Veja em 3D","3D",LinksAlvo);
-	LinkEcoMap    = HrefFromURLPlus(PreLinkEcoMap,   "button short icon landuse","Mapa ecológico","",LinksAlvo);
-	LinkOSMe      = HrefFromURLPlus(PreLinkOSMe,     "button short icon pencil","Edite este mapa","",LinksAlvo);
-	LinkHistory   = HrefFromURLPlus(PreLinkHistory, "button short icon time","Ao longo de 10 anos","",LinksAlvo);
-	LinkOSMd      = HrefFromURLPlus(PreLinkOSMd,     "button short icon point-line-poly","Dados do mapa","",LinksAlvo);
+	LinkOSMR      = HrefFromURLPlus(PreLinkOSMR,     "icon car","","Como chegar",LinksAlvo);
+	LinkMapillary = HrefFromURLPlus(PreLinkMapillary,"icon video","","Fotos/streetview",LinksAlvo);
+	LinkF4Map     = HrefFromURLPlus(PreLinkF4Map,    "","Veja em 3D","3D",LinksAlvo);
+	LinkOSMe      = HrefFromURLPlus(PreLinkOSMe,     "icon pencil","","Edite este mapa",LinksAlvo);
+	LinkOSMd      = HrefFromURLPlus(PreLinkOSMd,     "icon point-line-poly","","Dados do mapa",LinksAlvo);
 
 	PreLinkNote      = GetLinkNote(Lat,Lon); 
-	LinkNote   = HrefFromURLPlus(PreLinkNote,"button short icon tooltip","Localizou um erro ou algo faltando? Informe pra gente :)","",LinksAlvo);
-
+	LinkNote   = HrefFromURLPlus(PreLinkNote,"icon tooltip big","Localizou um erro ou algo faltando? Informe pra gente :)","Falta algo? Clique aqui",LinksAlvo);
+		
+	var LinkParaMapa = LinkDoMapa(Lat,Lon,Zoom,Dir);
 	
-	LinksLegenda = LinkOSMR + " " + LinkMapillary + " " + LinkF4Map + " " + LinkEcoMap + " " + LinkOSMe
-					 + " " + LinkHistory + " " + LinkOSMd + " "  + LinkNote; // + " " + LinkPrint;
+	LinksLegenda = "<div class='clearfix'>"
+	             + "    <div class='col6'>"+LinkOSMR+"</div><div class='col6'>"+LinkParaMapa+"</div>"
+	             + "    <div class='col6'>"+LinkMapillary+"</div><div class='col6'>"+LinkF4Map+"</div>"
+	             + "    <div class='col6'>"+LinkOSMe+"</div><div class='col6'>"+LinkOSMd+"</div>"
+	             + "    <div class='col12 center'>"+LinkNote+"</div>"
+	             + "</div>";
 	
-	if ( !MapaEmbutido ) {
-		LinksLegenda = LinksLegenda; 
-	}
-	
-	MakeMapControls(LinksLegenda);
+	return LinksLegenda; 
 }
 
 
@@ -238,10 +229,24 @@ var MapillaryIcon =  L.mapbox.marker.icon({
         'marker-color': '#36af6d'
     });
 
+var TaxiIcon =  L.mapbox.marker.icon({
+        'marker-size': 'large',
+        'marker-symbol': 'car',
+        'marker-color': '#fbb03b'
+    });
+
+var HotelIcon =  L.mapbox.marker.icon({
+        'marker-size': 'large',
+        'marker-symbol': 'lodging',
+        'marker-color': '#3887be'
+    });
+
+
+
 //Configura um ícone ao clicar no mapa
 var UserIconOnClick =  L.mapbox.marker.icon({
         'marker-size': 'large',
-        //'marker-symbol': 'information',
+        'marker-symbol': 'star',
         'marker-color': 'e55e5e'
     });
 
@@ -312,16 +317,25 @@ map.on('overlayremove', function(e) {
  });
  
  
- 
+function CopiarSelecionado(){
+   document.execCommand('copy');
+} 
+
 //Mostra coordenadas quando clicar em alguma parte do mapa
+function TempMarkerMsg(Lat,Lon){
+  var Zoom = map.getZoom();
+  var Opcoes = GerarOpcoesDoMapa(Lat,Lon,Zoom,'/mapa/');
+  var Msg = "<p class='clearfix text-right'><span class='icon marker'>Coordenadas: "
+          + Lat+',<br> '+ Lon + '<br>'
+	  + '</p>'
+	  + '<p class="prose prose-big">' + Opcoes + '</p>';	
+   return Msg; 
+}
+
+
 UserTempMarker.on('click', function(e) {
-	//pega coordenadas
-	var Zoom = map.getZoom();
-	var Link = LinkDoMapa(e.latlng.lat,e.latlng.lng,Zoom,'/mapa/');
-	var Msg = "<label><span class='icon marker'>Coordenadas:</label>"
-            + "<textarea onclick='this.select()'>"+ e.latlng.lat+', '+ e.latlng.lng  +"</textarea>'"
-			+ '<p>' + Link + '</p>';
-	UserTempMarker.bindPopup(Msg);	
+   var Msg = TempMarkerMsg(e.latlng.lat,e.latlng.lng);
+   UserTempMarker.bindPopup(Msg); 
 });
 
 map.on('click', function(e) {
@@ -336,32 +350,29 @@ map.on('click', function(e) {
 });
    
 
-
-
-AtualizarControlesDoMapa();			
+//Atualiza elementos ao mover o mapa
 map.on('moveend', function(e) {
-	AtualizarControlesDoMapa();	
-
-
-		olMPLL.loadURL(GetAPI_ENDPOINT()); //BETA
-					
+   olMPLL.loadURL(GetAPI_ENDPOINT()); //BETA					
 });	
 
-/*DEPRECATED
-refreshMapillary();
-map.on('dragend', function(e) {
-	refreshMapillary();					
-});	
-*/
 //thanks to http://jsfiddle.net/3fdCD/ from http://stackoverflow.com/questions/22119535/having-trouble-with-leaflet-removelayer
 $("#map-select-layer").change(function() {
 	//var Opcao = $("#map-select-layer option:selected").val();
 	ChangeLayer(BaseLayerAtual());			
 });
 
+$(".map-compare-button").click(function(e) {
+	e.preventDefault();
+	
+	myLayer1.addTo(map);
+	myLayer2.addTo(map);
+	SideBySideControl.addTo(map);
+});	
 
 
-//Função para adicionar mapas criados com o editor Mapbox! :)
+
+
+//Função para adicionar mapas criados com o editor Mapbox! Em desuso - manter para futuras funções:)
 $(".map-addl-button").click(function(e) {
 	e.preventDefault();
 	var Link  = "\nEditor Mapbox: http://mapbox.com/editor/";

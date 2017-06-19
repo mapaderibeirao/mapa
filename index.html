@@ -41,25 +41,21 @@
 	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
 	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
 
+	<!--  leaflet-side-by-side -->
+	<script src="include/leaflet-side-by-side/leaflet-side-by-side.js"></script>
+	
 	<script src="include/jquery.min.js" ></script>
 	<script src='include/providers.js'></script>
 	<script src="include/funcoes.js"></script>
+	<script src="include/funcoes-ol.js"></script>
 	<script src="include/urlparams.js" ></script>
 
 </head>
-<body class="fill-dark">	
-<div id='geocode-selector'></div> 
-<div id='mapdiv'></div> 
-<script>
-		//Permite que usuario modifique camada de fundo por URL
-		var URLSetBaseLayer = null;
-		
-		//estilo de mapa por parâmetro - validação
-		var TestBaseLayer = $.urlParam('l');
-		if (TestBaseLayer!=null){ URLSetBaseLayer = TestBaseLayer;}         
-
-
-
+  <body class="fill-dark">	
+  <div id='geocode-selector'></div> 
+  <div id='mapdiv'></div> 
+  <script src='include/get-param.js'></script> 	
+  <script>
 		var HeatLayer = L.heatLayer([], { minZoom: 5, maxZoom: 17 }); 
 		var ClusterLayer = new L.MarkerClusterGroup(); 
 		var RawOverlaysMB = []; //Overlays como dados brutos 
@@ -69,25 +65,13 @@
 		map.setView([-24.1267,-48.3721], 11); 
 		var MapHash = L.hash(map); 
 		lMNK.addTo(map); 
-</script> 
-<script src='include/proc.js'></script> 
-<script> 
-  
-		//Foi solicitada mudança por URL?
-		if (URLSetBaseLayer!=null){ 
-			switch(URLSetBaseLayer) {
-				case 'satelite' : URLSetBaseLayer = 'lMBT'; break;					
-			}	
-			
-			if(BaselayersValidas.match(URLSetBaseLayer)){
-				$('#map-select-layer').val(URLSetBaseLayer);
-				$('#map-select-layer').change();
-			}
-		}
-  
-</script> 
+		var myLayer1 = lMNK; //DEfault = OSM default
+		var myLayer2 = lMBT; //Sempre será satélite
+		var SideBySideControl = new L.control.sideBySide(myLayer1, myLayer2);
 	
-	
+  </script> 
+  <script src='include/proc.js'></script> 
+  <script src='include/proc-param.js'></script> 
 	
 </body>
 </html>

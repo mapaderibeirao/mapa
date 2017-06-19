@@ -1,0 +1,20 @@
+{
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Name": "Bairro Anacletos", "Description": "<b>Dirceu F. de Oliveira<\/b><br> Telefone: <br> <b>Veículo:<\/b><br> Marca \/ Modelo \/ Cor" }, "geometry": { "type": "Point", "coordinates": [ -48.382131471289711, -24.159807973205879, 0.0 ] } }
+,
+{ "type": "Feature", "properties": { "Name": "Barreiro Cabral", "Description": "<b>Vandir C. Vaz<\/b><br> Telefone: <br> <b>Veículo:<\/b><br> Marca \/ Modelo \/ Cor" }, "geometry": { "type": "Point", "coordinates": [ -48.352128267386547, -24.1464501018236, 0.0 ] } }
+,
+{ "type": "Feature", "properties": { "Name": "Boa Vista", "Description": "<b>Sandro Q. de Oliveira<\/b><br> Telefone: <br> <b>Veículo:<\/b><br> Marca \/ Modelo \/ Cor" }, "geometry": { "type": "Point", "coordinates": [ -48.42249870312456, -24.226145949307369, 0.0 ] } }
+,
+{ "type": "Feature", "properties": { "Name": "Capoeira Alta", "Description": "<b>Inácio F. de LIma<\/b><br> Telefone: <br> <b>Veículo:<\/b><br> Marca \/ Modelo \/ Cor" }, "geometry": { "type": "Point", "coordinates": [ -48.398551940950163, -24.1311668528875, 0.0 ] } }
+,
+{ "type": "Feature", "properties": { "Name": "Capoeira Alta", "Description": "<b>Inácio F. de LIma<\/b><br> Telefone: <br> <b>Veículo:<\/b><br> Marca \/ Modelo \/ Cor" }, "geometry": { "type": "Point", "coordinates": [ -48.398551940950163, -24.1311668528875, 0.0 ] } }
+,
+{ "type": "Feature", "properties": { "Name": "Capoeira Alta", "Description": "<b>Inácio F. de LIma<\/b><br> Telefone: <br> <b>Veículo:<\/b><br> Marca \/ Modelo \/ Cor" }, "geometry": { "type": "Point", "coordinates": [ -48.398551940950163, -24.1311668528875, 0.0 ] } }
+,
+{ "type": "Feature", "properties": { "Name": "Capoeira Alta", "Description": "<b>Inácio F. de LIma<\/b><br> Telefone: <br> <b>Veículo:<\/b><br> Marca \/ Modelo \/ Cor" }, "geometry": { "type": "Point", "coordinates": [ -48.398551940950163, -24.1311668528875, 0.0 ] } }
+
+]
+}

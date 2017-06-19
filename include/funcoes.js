@@ -168,3 +168,9 @@ function RmBaseLayers() {
 	RmIfLIsOn( lIBR );
 	RmIfLIsOn( lIBU );
 }
+
+function FormatNameDesc(Name,Description){
+  var Header = '<h1>'+ Name + '</h1>';
+  var Content = '<p>'+ Description + '</p>';
+  return Header + Content;
+}
