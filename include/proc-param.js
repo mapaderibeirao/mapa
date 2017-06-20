@@ -33,6 +33,7 @@ if (URLSetBaseLayer!=null){
 if (CamadaDeDados !=null){ 
    switch( CamadaDeDados  ) {
 	case 'hospedagem' : AddDataOverlay('hospedagem','Hospedagem',HotelIcon,'lodging'); break; 
+	case 'barrest'    : AddDataOverlay('bares-restaurantes','Bares e Restaurantes',AlimentIcon,'bar'); break; 
 	case 'taxi'       : AddDataOverlay('taxi','Táxi',TaxiIcon,'car'); break; 
    }
 }
