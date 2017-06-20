@@ -32,26 +32,8 @@ if (URLSetBaseLayer!=null){
 
 if (CamadaDeDados !=null){ 
    switch( CamadaDeDados  ) {
-	case 'hospedagem' : AddDataOverlay('hospedagem','Hospedagem',HotelIcon,'lodging'); break; 
-	case 'barrest'    : AddDataOverlay('bares-restaurantes','Bares e Restaurantes',AlimentIcon,'bar'); break; 
+	case 'hospedagem' : AddDataOverlay('hospedagem','Hospedagem',HotelIcon,'point'); break; 
+	case 'barrest'    : AddDataOverlay('bares-restaurantes','Bares e Restaurantes',AlimentIcon,'point'); break; 
 	case 'taxi'       : AddDataOverlay('taxi','Táxi',TaxiIcon,'car'); break; 
    }
 }
-
-//test - Add geoJSON
-/*
-var olHosp = L.mapbox.featureLayer()   
-  .loadURL('dados/hospedagem.geojson')
-  .on('layeradd', function(e) {
-    var marker = e.layer;
-    marker.setIcon(HotelIcon);
-        e.layer.bindPopup(FormatNameDesc(e.layer.feature.properties.Name,e.layer.feature.properties.Description));        
-      
-  })
-  .on('ready', function() {
-       var ClusterLayerHosp = new L.MarkerClusterGroup();      
-       ClusterLayerHosp.addLayer(olHosp);
-       ControlLayers.addOverlay(ClusterLayerHosp, '<span class="icon suitcase"> Meios de Hospedagem');      
-       map.addLayer(ClusterLayerHosp);
-});
-*/
