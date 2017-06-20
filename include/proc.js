@@ -241,6 +241,12 @@ var HotelIcon =  L.mapbox.marker.icon({
         'marker-color': '#3887be'
     });
 
+var AlimentIcon =  L.mapbox.marker.icon({
+        'marker-size': 'large',
+        'marker-symbol': 'bar',
+        'marker-color': '#3887be'
+    });
+
 
 
 //Configura um ícone ao clicar no mapa
