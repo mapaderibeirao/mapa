@@ -1,7 +1,6 @@
 //Processamento de parâmentros via URL
 
-//Foi solicitada mudança de mapa por URL?
-	
+//Foi solicitada mudança de mapa por URL?	
 if (URLSetBaseLayer!=null){ 	
 	switch(URLSetBaseLayer) {
 		case 'satelite' : URLSetBaseLayer = 'lMBT'; break;					
@@ -37,3 +36,14 @@ if (CamadaDeDados !=null){
 	case 'taxi'       : AddDataOverlay('taxi','Táxi',TaxiIcon,'car'); break; 
    }
 }
+
+
+$(".btnMapSatSwitcher").click(function(e) {
+	e.preventDefault();
+	if( IsSatelliteLayer()){
+		$('#map-select-layer').val('lMNK');
+	}else{
+		$('#map-select-layer').val('lMBT');
+	}	
+        $('#map-select-layer').change();	
+}); 

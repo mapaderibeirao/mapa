@@ -44,9 +44,17 @@ var MapBaseLayersSelect = "<form id='map-controles' method='post' >"
 		+"</span>"
 		+"</form>";
 
+var BtnMapSatHtml = "<div class='center btnMapSatSwitcher-sat'><a href='#' class='button btnMapSatSwitcher fill-purple pad0'> <span class='dark icon big satellite'></span></a><br><span class='small'>Satélite</span></div>";
+var BtnMapMapHtml = "<div class='center btnMapSatSwitcher-map'><a href='#' class='button btnMapSatSwitcher fill-orange pad0'><span class='dark icon big map'></span></a><br><span class='small'>Mapa</span></div>";
+
+
 var ControlesDoMapa = new L.mapbox.LegendControl({position: 'topright'});
 ControlesDoMapa.addTo(map);
 ControlesDoMapa.addLegend(MapBaseLayersSelect); //A seleção das camadas do mapa não devem ser mudadas ao mover o mapa
+
+var ControleMapSatSwitcher = new L.mapbox.LegendControl({position: 'bottomright'});
+ControleMapSatSwitcher.addLegend(BtnMapMapHtml+BtnMapSatHtml);
+
 
 var BaselayersValidas = 'lMNK;lMKG;lMBL;lMBD;lOTD;lMBO;lCYL;lLSC;lTPD;lMBB;lMBP;lMBC;lMBR;lSTW;lSTL;lSTT;lMBW;lMBS;lMBT;lIBR;lIBU';
 
@@ -72,6 +80,41 @@ function BaseLayerAtual(){
    var Opcao = $("#map-select-layer option:selected").val();	
    return Opcao;
 }
+
+//Retorna se está usando camada Mapbox satélite
+function IsSatelliteLayer(){
+   var Camada = BaseLayerAtual(); 
+   var Retornar = false;
+   if( Camada == "lMBT"){ Retornar = true;}
+   return Retornar;
+}
+
+function IsSatOrMapLayer(){
+   var Camada = BaseLayerAtual(); 
+   var Retornar = false;
+   if( Camada == "lMBT" || Camada == "lMNK"){ Retornar = true;}
+   return Retornar;
+}
+
+//Checa o estado do botão alternador de mapa/satélite
+//Se camada alterada não for satélite ou manik, não fazer nada
+//Se mudou para a mesma camada que está sugerindo, não fazer nada
+function CheckControleMapSatSwitcher(){
+      var SatOuMap = IsSatOrMapLayer();
+      if( !SatOuMap ){
+          //nada a fazer!
+      }else{     
+	   var Satelite = IsSatelliteLayer();   
+           if(Satelite){
+               $(".btnMapSatSwitcher-map").show();
+               $(".btnMapSatSwitcher-sat").hide();
+           }else{
+               $(".btnMapSatSwitcher-map").hide();
+               $(".btnMapSatSwitcher-sat").show();
+           }	
+      }
+}
+
 
 function ChangeLayer(Opcao) {
 	//Transforma Opcao (string) em layer
@@ -102,13 +145,8 @@ function ChangeLayer(Opcao) {
 	//remove camadas existentes
 	RmBaseLayers(); //Apenas as baselayers, preserve as overlays
    map.addLayer(sLayer);
+   CheckControleMapSatSwitcher();
 }
-
-/*  DEPRECATED
-function MakeMapControls(Links) {
-	$(".map-controls-group").html(Links);
-}
-*/
 
 function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	PreLinkOSMR      = GetLinkOSMR(Lat,Lon); 
@@ -144,52 +182,12 @@ var BaseLayers = {};
 var Overlays = {};	
 var ControlLayers = L.control.layers( BaseLayers, Overlays, {position: 'topright', collapsed: false});
 
-/*
-var layer_oplAlimentacao = new L.OverPassLayer({
-	   query: "( node(BBOX)['amenity'='cafe']; node(BBOX)['amenity'='fast_food'];  node(BBOX)['amenity'='restaurant']; node(BBOX)['amenity'='ice_cream']; );out;"
-});
-var layer_oplAcomodacao = new L.OverPassLayer({
-	   query: "( node(BBOX)['tourism'='hotel']; node(BBOX)['tourism'='alpine_hut'];  node(BBOX)['tourism'='apartament']; node(BBOX)['tourism'='guest_house']; node(BBOX)['tourism'='chalet']; node(BBOX)['tourism'='hostel'];  node(BBOX)['tourism'='motel'];  );out;"
-   
-});
-var layer_oplTurismo = new L.OverPassLayer({
-	   query: "( node(BBOX)['historic'='monument']; node(BBOX)['historic'='memorial']; node(BBOX)['historic'='ruins']; node(BBOX)['historic'='ruins']; node(BBOX)['tourism'='attraction'];  node(BBOX)['tourism'='artwork']; node(BBOX)['tourism'='gallery']; node(BBOX)['tourism'='information']; node(BBOX)['tourism'='museum']; node(BBOX)['tourism'='zoo']; );out;"   
-});
-
-var layer_oplTransporte = new L.OverPassLayer({
-	   query: "( node(BBOX)['amenity'='bicycle_parking']; node(BBOX)['amenity'='bus_station']; node(BBOX)['amenity'='car_rental']; node(BBOX)['amenity'='car_wash'];  node(BBOX)['amenity'='charging_station']; node(BBOX)['amenity'='ferry_terminal'];  node(BBOX)['amenity'='fuel'];  node(BBOX)['amenity'='parking'];  node(BBOX)['amenity'='taxi']; node(BBOX)['amenity'='bus_stop']; );out;"   
-});
-var layer_oplBasicos = new L.OverPassLayer({
-	   query: "( node(BBOX)['amenity'='post_office']; node(BBOX)['amenity'='police']; node(BBOX)['amenity'='pharmacy']; node(BBOX)['amenity'='hospital'];  node(BBOX)['amenity'='atm']; node(BBOX)['amenity'='bank']; );out;"   
-});
-var layer_oplLixo = new L.OverPassLayer({
-	   query: "( node(BBOX)['amenity'='waste_disposal']; node(BBOX)['amenity'='waste_basket']; node(BBOX)['amenity'='recycling'];  node(BBOX)['amenity'='recycling']; );out;"   
-});
-
-var olALIM = layer_oplAlimentacao;
-var olACOM = layer_oplAcomodacao;
-var olTURI = layer_oplTurismo;
-var olTRSP = layer_oplTransporte;
-var olUTIL = layer_oplBasicos;
-
-*/
 var olNASC = new L.OverPassLayer({
 	   query: "( node(BBOX)['natural'='spring']; );out;"   
 });
 
-
-
-//ControlLayers.addOverlay(olALIM, 'Onde se alimentar?');
-//ControlLayers.addOverlay(olACOM, 'Onde dormir?');				
-//ControlLayers.addOverlay(olTURI, 'Turismo');				
-//ControlLayers.addOverlay(olTRSP, 'Transporte');				
-//ControlLayers.addOverlay(olUTIL, 'Utilidades básicas');								
-//ControlLayers.addOverlay(layer_oplLixo, 'Onde jogar lixo?');
-
-
 //MAPILLARY       ******************************************************************
-//https://www.mapbox.com/mapbox.js/example/v1.0.0/images-from-mapillary/
-    
+//https://www.mapbox.com/mapbox.js/example/v1.0.0/images-from-mapillary/   
 var API_ENDPOINT = "";
 
 function MapillaryImg(Key,Width) {
@@ -201,11 +199,8 @@ function MapillaryImgHref(Key) {
 	var Cnt = map.getCenter();
 	var Lat = Cnt.lat;
 	var Lon = Cnt.lng;
-	var Zoom = map.getZoom();
-	
+	var Zoom = map.getZoom();	
 	var Img = '<img width="99%" alt="foto..." src="' + MapillaryImg(Key,320)  + '" />';
-//	var Link = "http://mapillary.com/map/im/"+ Key +"/photo";
-//	var Link = GetLinkMapillaryView(Key,Lat,Lon,Zoom); DEPRECATED
 	var Link = GetLinkMapillaryImg(Key);
 	return HrefFromURLPlus(Link,'','',Img,'_parent'); 
 }
@@ -297,6 +292,8 @@ var ControlGeocoder = new L.Control.geocoder({
 		placeholder: 'O que procura?'
 });
 ControlGeocoder.addTo(map);
+
+ControleMapSatSwitcher.addTo(map);
 
 //map.addControl(L.mapbox.shareControl());
 
@@ -467,3 +464,4 @@ function AddMBLayerInTheMap(DadosRaw) {
 	}
 }
 
+CheckControleMapSatSwitcher();

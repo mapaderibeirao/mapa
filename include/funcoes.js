@@ -57,7 +57,7 @@ function GetLinkOSMR(Lat,Lon) {
 //	var Link = "http://map.project-osrm.org/?loc=-23.505175,-46.853432&loc=" + Lat + "," + Lon + "&z=17&center=" + Lat + "," + Lon + "&alt=0&df=0&re=0&ly=-1171809665";
 //graphhopper :)
 //https://graphhopper.com/maps/?point=-24.107431%2C-48.34568&point=-24.099909%2C-48.365679&locale=pt-BR&vehicle=car&weighting=fastest&elevation=true&key=2a24e316-61ea-4850-b231-4ef2fe25d229&use_miles=false&layer=OpenStreetMap	
-	var Link = "https://graphhopper.com/maps/?point=-23.505175%2C-46.853432&point=" + Lat + "%2C" + Lon + "&locale=pt-BR&vehicle=car&weighting=fastest&elevation=true&key=2a24e316-61ea-4850-b231-4ef2fe25d229&use_miles=false&layer=OpenStreetMap";
+	var Link = "https://graphhopper.com/maps/?point=-24.094456588117055%2C-48.364450335502625&point=" + Lat + "%2C" + Lon + "&locale=pt-BR&vehicle=car&weighting=fastest&elevation=true&key=2a24e316-61ea-4850-b231-4ef2fe25d229&use_miles=false&layer=OpenStreetMap";
 	return Link;
 }
 
