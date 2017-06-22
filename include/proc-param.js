@@ -39,11 +39,16 @@ if (CamadaDeDados !=null){
 
 
 $(".btnMapSatSwitcher").click(function(e) {
-	e.preventDefault();
+   e.preventDefault();
+   if(MapCompareActive){
+	   MapCompareActiveStop();	
+   }else{	
+	
 	if( IsSatelliteLayer()){
 		$('#map-select-layer').val('lMNK');
 	}else{
 		$('#map-select-layer').val('lMBT');
 	}	
         $('#map-select-layer').change();	
+   }
 }); 

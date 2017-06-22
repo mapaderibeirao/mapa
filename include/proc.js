@@ -1,11 +1,16 @@
 //initialization ************************************************************
 var MapHelpButton   = HrefFromURLPlus("https://mapaderibeiraograndesp.wordpress.com/sobre/","button short icon space-bottom1 help","Ajuda","","") + " ";
-var MapCompareButton = HrefFromURLPlus("#","button short space-bottom1 fill-green map-compare-button","Comparar mapa","Compare","") + " ";
 var MapHomeButton   = HrefFromURLPlus("https://mapaderibeiraograndesp.wordpress.com/","button short icon home space-bottom1 fill-green","Início","","") +" "; 
 var LinksAlvo = "";
 var MapControlsInner = "";     //HTML que vai dentro do LegendControl ControlesDoMapa
 var MapaEmbutido = MapIsEmb();
 var MapPreventNewUserMakers = false;  //Ao clicar, cria um marcador.
+var MapCompareButtonSt = HrefFromURLPlus("#","button short space-bottom1 fill-green map-compare-button map-compare-button-start","","Comparar","") + " ";
+var MapCompareButtonEn = HrefFromURLPlus("#","button short space-bottom1 fill-red   map-compare-button map-compare-button-end","","Parar","") + " ";
+var MapCompareActive = false;
+var SideBySideFrground = lMNK; //default
+var SideBySideBkground = lMBT; //Sempre será satélite
+var SideBySideControl = new L.control.sideBySide(SideBySideFrground, SideBySideBkground);
 
 //Os links dos botões devem abrir fora do iframe ou quadro onde o mapa foi embutido
 if ( MapaEmbutido ) {
@@ -38,25 +43,30 @@ var MapBaseLayersSelect = "<form id='map-controles' method='post' >"
 			+"<option value='lIBU' >IBGE Urbano</option>"
 		+"</select> <br>"
 		+"<span class='dark'>"
-//                +  MapCompareButton 
+                +  MapCompareButtonSt 
+                +  MapCompareButtonEn
 		+  MapHomeButton 
 		+  MapHelpButton
 		+"</span>"
 		+"</form>";
 
-var BtnMapSatHtml = "<div class='center btnMapSatSwitcher-sat'><a href='#' class='button btnMapSatSwitcher fill-purple pad0'> <span class='dark icon big satellite'></span></a><br><span class='small'>Satélite</span></div>";
-var BtnMapMapHtml = "<div class='center btnMapSatSwitcher-map'><a href='#' class='button btnMapSatSwitcher fill-orange pad0'><span class='dark icon big map'></span></a><br><span class='small'>Mapa</span></div>";
+var BtnMapSatHtml = "<div class='center btnMapSatSwitcher-sat'><a href='#' class='button btnMapSatSwitcher fill-purple pad0'> <span class='dark icon satellite'></span></a><br><span class='small'>Satélite</span></div>";
+var BtnMapMapHtml = "<div class='center btnMapSatSwitcher-map'><a href='#' class='button btnMapSatSwitcher fill-orange pad0'><span class='dark icon map'></span></a><br><span class='small'>Mapa</span></div>";
 
 
 var ControlesDoMapa = new L.mapbox.LegendControl({position: 'topright'});
 ControlesDoMapa.addTo(map);
 ControlesDoMapa.addLegend(MapBaseLayersSelect); //A seleção das camadas do mapa não devem ser mudadas ao mover o mapa
 
+//Esconde o botão parar comparação do mapa
+$(".map-compare-button-end").hide();
+
 var ControleMapSatSwitcher = new L.mapbox.LegendControl({position: 'bottomright'});
 ControleMapSatSwitcher.addLegend(BtnMapMapHtml+BtnMapSatHtml);
 
 
 var BaselayersValidas = 'lMNK;lMKG;lMBL;lMBD;lOTD;lMBO;lCYL;lLSC;lTPD;lMBB;lMBP;lMBC;lMBR;lSTW;lSTL;lSTT;lMBW;lMBS;lMBT;lIBR;lIBU';
+var BaselayersComparaveis = 'lMNK;lMBS;lMBO;lCYL;lIBR;lIBU';
 
 
 function LinkDoMapa(Lat,Lon,Zoom,Dir){	
@@ -115,37 +125,43 @@ function CheckControleMapSatSwitcher(){
       }
 }
 
+function StrToLayer(Nome){
+   var LTemp = null;	
+   switch( Nome ) {
+		case 'lMNK' : LTemp = lMNK; break;	
+		case 'lMKG' : LTemp = lMKG; break;	
+		case 'lMBL' : LTemp = lMBL; break;
+		case 'lMBD' : LTemp = lMBD; break;	
+		case 'lOTD' : LTemp = lOTD; break;	
+		case 'lMBO' : LTemp = lMBO; break;	
+		case 'lCYL' : LTemp = lCYL; break;	
+		case 'lLSC' : LTemp = lLSC; break;	
+		case 'lTPD' : LTemp = lTPD; break;	
+		case 'lMBB' : LTemp = lMBB; break;	
+		case 'lMBP' : LTemp = lMBP; break;	
+		case 'lMBC' : LTemp = lMBC; break;	
+		case 'lMBR' : LTemp = lMBR; break;	
+		case 'lSTW' : LTemp = lSTW; break;	
+		case 'lSTL' : LTemp = lSTL; break;	
+		case 'lSTT' : LTemp = lSTT; break;	
+		case 'lMBW' : LTemp = lMBW; break;	
+		case 'lMBS' : LTemp = lMBS; break;	
+		case 'lMBT' : LTemp = lMBT; break;		
+		case 'lIBR' : LTemp = lIBR; break;	
+		case 'lIBU' : LTemp = lIBU; break;	
+   }	
+   return LTemp;
+}
 
 function ChangeLayer(Opcao) {
-	//Transforma Opcao (string) em layer
-	switch( Opcao ) {
-		case 'lMNK' : sLayer = lMNK; break;	
-		case 'lMKG' : sLayer = lMKG; break;	
-		case 'lMBL' : sLayer = lMBL; break;
-		case 'lMBD' : sLayer = lMBD; break;	
-		case 'lOTD' : sLayer = lOTD; break;	
-		case 'lMBO' : sLayer = lMBO; break;	
-		case 'lCYL' : sLayer = lCYL; break;	
-		case 'lLSC' : sLayer = lLSC; break;	
-		case 'lTPD' : sLayer = lTPD; break;	
-		case 'lMBB' : sLayer = lMBB; break;	
-		case 'lMBP' : sLayer = lMBP; break;	
-		case 'lMBC' : sLayer = lMBC; break;	
-		case 'lMBR' : sLayer = lMBR; break;	
-		case 'lSTW' : sLayer = lSTW; break;	
-		case 'lSTL' : sLayer = lSTL; break;	
-		case 'lSTT' : sLayer = lSTT; break;	
-		case 'lMBW' : sLayer = lMBW; break;	
-		case 'lMBS' : sLayer = lMBS; break;	
-		case 'lMBT' : sLayer = lMBT; break;		
-		case 'lIBR' : sLayer = lIBR; break;	
-		case 'lIBU' : sLayer = lIBU; break;	
-	}	
-	
-	//remove camadas existentes
-	RmBaseLayers(); //Apenas as baselayers, preserve as overlays
-   map.addLayer(sLayer);
+   var LTemp = StrToLayer(Opcao);
+   //remove camadas existentes
+   RmBaseLayers(); //Apenas as baselayers, preserve as overlays
+   map.addLayer(LTemp);
    CheckControleMapSatSwitcher();
+   if(CheckBaselayersComparaveis(Opcao)){
+       $(".map-compare-button-start").show(); 
+   }else{ $(".map-compare-button-start").hide(); }
 }
 
 function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
@@ -352,7 +368,6 @@ map.on('click', function(e) {
 	}
 });
    
-
 //Atualiza elementos ao mover o mapa
 map.on('moveend', function(e) {
    olMPLL.loadURL(GetAPI_ENDPOINT()); //BETA					
@@ -360,16 +375,52 @@ map.on('moveend', function(e) {
 
 //thanks to http://jsfiddle.net/3fdCD/ from http://stackoverflow.com/questions/22119535/having-trouble-with-leaflet-removelayer
 $("#map-select-layer").change(function() {
-	//var Opcao = $("#map-select-layer option:selected").val();
+    if(MapCompareActive){
+	   MapCompareActiveStop();	
+    }else{	
 	ChangeLayer(BaseLayerAtual());			
+    }
 });
+
+//Verifica se mapa de fundo pode ser comparado
+function CheckBaselayersComparaveis(Camada){
+  var Resultado = false;
+  if(BaselayersComparaveis.indexOf(Camada) > -1) { Resultado = true;  }
+  return Resultado;
+}
+
+function MapCompareActiveStop(){
+   MapCompareActive = false;
+   $(".map-compare-button-start").show();
+   $(".map-compare-button-end").hide();
+   //SideBySideControl.remove();
+   location.reload(); //Esta alternativa funciona por enquanto, mas não é o ideal
+}
 
 $(".map-compare-button").click(function(e) {
 	e.preventDefault();
-	
-	myLayer1.addTo(map);
-	myLayer2.addTo(map);
-	SideBySideControl.addTo(map);
+	if(MapCompareActive){
+	   MapCompareActiveStop();	
+	}else{
+	   MapCompareActive = true;
+	   $(".map-compare-button-start").hide();
+	   $(".map-compare-button-end").show();
+		
+	   var LayerNome = BaseLayerAtual();	
+	   var LayerTemp = StrToLayer(LayerNome);
+	   //Tratamento diferente de comparação para camadas IBGE
+	   if ( LayerNome == "lIBR" || LayerNome == "lIBU"){	                    
+	       SideBySideBkground = LayerTemp;  //Camada ativa se torna o fundo, precisa adicionar a de frente
+	       SideBySideFrground = lMNK;
+	       SideBySideFrground.addTo(map);
+	   }else{
+	       SideBySideFrground = LayerTemp;
+	       SideBySideBkground.addTo(map);   //Adiciona apenas fundo, frente já existe
+	   }
+		
+	   SideBySideControl.addTo(map);
+	}
+
 });	
 
 
