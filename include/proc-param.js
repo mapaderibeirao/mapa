@@ -1,12 +1,12 @@
 //Processamento de parâmentros via URL
 
 //Foi solicitada mudança de mapa por URL?	
-if (URLSetBaseLayer!=null){ 	
+if (URLSetBaseLayer!=null){ 
 	switch(URLSetBaseLayer) {
 		case 'satelite' : URLSetBaseLayer = 'lMBT'; break;					
 	}	
 			
-	if(BaselayersValidas.match(URLSetBaseLayer)){
+	if(BaselayersValidas.match(URLSetBaseLayer)){	
 		$('#map-select-layer').val(URLSetBaseLayer);
 		$('#map-select-layer').change();
 	}

@@ -361,7 +361,10 @@ map.on('click', function(e) {
 	if (!MapPreventNewUserMakers){
 		MapPreventNewUserMakers = true;
 		UserTempMarker.setLatLng(e.latlng);
-		UserTempMarker.addTo(map);
+                var Msg = TempMarkerMsg(e.latlng.lat,e.latlng.lng);
+		UserTempMarker.bindPopup(Msg)
+		.addTo(map)
+		.openPopup();
 	}else{
 		MapPreventNewUserMakers = false;
 		map.removeLayer(UserTempMarker);
