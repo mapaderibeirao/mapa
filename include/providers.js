@@ -13,7 +13,7 @@ var ThunderforestAPIKey = '?apikey=8c44f9f9817f4c8faeb76a930142683f';
 
 
 //Layers *******************************************************
-var lMNK = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: attrMapboxjs} );
+var lMNK = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: attrMapboxjs, maxZoom: 19, maxNativeZoom: 19, detectRetina: true, reuseTiles: true } );
 var lMKG = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {attribution: attrMapboxjs});
 var lOTD = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png'+ThunderforestAPIKey, {attribution: attrThunder} );
 var lCYL = L.tileLayer('http://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png'+ThunderforestAPIKey, {attribution: attrThunder} );
