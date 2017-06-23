@@ -48,7 +48,7 @@ var MapBaseLayersSelect = "<form id='map-controles' method='post' >"
 		+  MapHomeButton 
 		+  MapHelpButton
 		+"</span>"
-		+"<span class='dicacliquenomapa small'>Clique no mapa para ver opções</span>"
+		+"<br><span class='dicacliquenomapa small'>Clique no mapa<br> para ver opções</span>"
 		+"</form>";
 
 var BtnMapSatHtml = "<div class='center btnMapSatSwitcher-sat'><a href='#' class='button btnMapSatSwitcher fill-purple pad0'> <span class='dark icon satellite'></span></a><br><span class='small'>Satélite</span></div>";
