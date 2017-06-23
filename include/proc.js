@@ -21,11 +21,13 @@ if ( MapaEmbutido ) {
 var MapBaseLayersSelect = "<form id='map-controles' method='post' >"
 		+"<select id='map-select-layer' name='share-b'>"
 			+"<option value='lMNK' >OpenStreetMap</option>"  
+			+"<option value='lMBT' >Mapbox Satellite</option>"
+			+"<option value='lIBR' >IBGE Rural</option>"
+			+"<option value='lIBU' >IBGE Urbano</option>"
 			+"<option value='lMKG' >OSM Tons de cinza</option>"
 			+"<option value='lMBL' >Mapbox Light</option>"  
 			+"<option value='lMBD' >Mapbox Dark</option>"
 			+"<option value='lMBS' >Mapbox Streets</option>"
-			+"<option value='lMBT' >Mapbox Satellite</option>"
 			+"<option value='lMBO' >Mapbox Outdoors</option>"
 			+"<option value='lMBB' >Mapbox Run - Bike</option>"
 			+"<option value='lMBP' >Mapbox Pencil</option>"
@@ -39,8 +41,6 @@ var MapBaseLayersSelect = "<form id='map-controles' method='post' >"
 			+"<option value='lSTW' >Stamen Watercolor</option>"
 			+"<option value='lSTL' >Stamen Toner Light</option>"
 			+"<option value='lSTT' >Stamen Toner Dark</option>"
-			+"<option value='lIBR' >IBGE Rural</option>"
-			+"<option value='lIBU' >IBGE Urbano</option>"
 		+"</select> <br>"
 		+"<span class='dark'>"
                 +  MapCompareButtonSt 
@@ -48,6 +48,7 @@ var MapBaseLayersSelect = "<form id='map-controles' method='post' >"
 		+  MapHomeButton 
 		+  MapHelpButton
 		+"</span>"
+		+"<br><div class='dicacliquenomapa small'>Clique no mapa para ver opções<div>"
 		+"</form>";
 
 var BtnMapSatHtml = "<div class='center btnMapSatSwitcher-sat'><a href='#' class='button btnMapSatSwitcher fill-purple pad0'> <span class='dark icon satellite'></span></a><br><span class='small'>Satélite</span></div>";
