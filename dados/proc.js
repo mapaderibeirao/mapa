@@ -1,6 +1,7 @@
 function PrepItem(Tit,Desc){
-	var Result = '<div clas="col11 box round space-bottom3 clearfix limiter">'
-		+'<h3 class="fancy">'+ Tit + '</h1>' 
+	var Icone = '<span class="icon map big"></span>'
+	var Result = '<div clas="col11 keyline-all space-bottom clearfix limiter">'
+		+'<h3 class="fancy fill-gray pad0">'+ Icone + Tit + '</h1>' 
 		+ '<p>'+ Desc + '</p><br>'
 		+ '</div>';
     return Result;

@@ -32,8 +32,8 @@ if (URLSetBaseLayer!=null){
 if (CamadaDeDados !=null){ 
    var OK = true;
    switch( CamadaDeDados  ) {
-	case 'hospedagem' : AddDataOverlay('hospedagem','Hospedagem',HotelIcon,'point'); break; 
-	case 'barrest'    : AddDataOverlay('bares-restaurantes','Bares e Restaurantes',AlimentIcon,'point'); break; 
+	case 'hospedagem' : AddDataOverlay('hospedagem','Hospedagem',HotelIcon,'map'); break; 
+	case 'barrest'    : AddDataOverlay('bares-restaurantes','Bares e Restaurantes',AlimentIcon,'map'); break; 
 	case 'taxi'       : AddDataOverlay('taxi','Táxi',TaxiIcon,'car'); break; 
         default           : OK = false;
    }
