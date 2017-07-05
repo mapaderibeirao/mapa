@@ -30,10 +30,15 @@ if (URLSetBaseLayer!=null){
 
 
 if (CamadaDeDados !=null){ 
+   var OK = true;
    switch( CamadaDeDados  ) {
 	case 'hospedagem' : AddDataOverlay('hospedagem','Hospedagem',HotelIcon,'point'); break; 
 	case 'barrest'    : AddDataOverlay('bares-restaurantes','Bares e Restaurantes',AlimentIcon,'point'); break; 
 	case 'taxi'       : AddDataOverlay('taxi','Táxi',TaxiIcon,'car'); break; 
+        default           : OK = false;
+   }
+   if(OK){
+      ControleListDadosGeoJSON.addTo(map);	   
    }
 }
 
@@ -51,4 +56,10 @@ $(".btnMapSatSwitcher").click(function(e) {
 	}	
         $('#map-select-layer').change();	
    }
+}); 
+
+$(".btnListDadosGeoJSON").click(function(e) {
+   e.preventDefault();
+   var URL = 'dados/?d='+CamadaDeDados;
+   window.location.href = URL;
 }); 

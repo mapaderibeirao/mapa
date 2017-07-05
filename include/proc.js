@@ -53,6 +53,7 @@ var MapBaseLayersSelect = "<form id='map-controles' method='post' >"
 
 var BtnMapSatHtml = "<div class='center btnMapSatSwitcher-sat'><a href='#' class='button btnMapSatSwitcher fill-purple pad0'> <span class='dark icon satellite'></span></a><br><span class='small'>Satélite</span></div>";
 var BtnMapMapHtml = "<div class='center btnMapSatSwitcher-map'><a href='#' class='button btnMapSatSwitcher fill-orange pad0'><span class='dark icon map'></span></a><br><span class='small'>Mapa</span></div>";
+var BtnListDadosGeoJSONHtml = "<div><a href='#' class='button btnListDadosGeoJSON fill-blue pad0'><span class='dark icon book'></span></a><br><span class='small'>Leitura</span></div>";
 
 
 var ControlesDoMapa = new L.mapbox.LegendControl({position: 'topright'});
@@ -64,6 +65,9 @@ $(".map-compare-button-end").hide();
 
 var ControleMapSatSwitcher = new L.mapbox.LegendControl({position: 'bottomright'});
 ControleMapSatSwitcher.addLegend(BtnMapMapHtml+BtnMapSatHtml);
+
+var ControleListDadosGeoJSON = new L.mapbox.LegendControl({position: 'topleft'});
+ControleListDadosGeoJSON.addLegend(BtnListDadosGeoJSONHtml);
 
 
 var BaselayersValidas = 'lMNK;lMKG;lMBL;lMBD;lOTD;lMBO;lCYL;lLSC;lTPD;lMBB;lMBP;lMBC;lMBR;lSTW;lSTL;lSTT;lMBW;lMBS;lMBT;lIBR;lIBU';
