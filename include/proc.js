@@ -203,9 +203,11 @@ var BaseLayers = {};
 var Overlays = {};	
 var ControlLayers = L.control.layers( BaseLayers, Overlays, {position: 'topright', collapsed: false});
 
+/* DEP
 var olNASC = new L.OverPassLayer({
 	   query: "( node(BBOX)['natural'='spring']; );out;"   
 });
+*/
 
 //MAPILLARY       ******************************************************************
 //https://www.mapbox.com/mapbox.js/example/v1.0.0/images-from-mapillary/   
@@ -303,7 +305,7 @@ olMPLL.loadURL(GetAPI_ENDPOINT());
 
 
 ControlLayers.addOverlay(olMPLL, '<span class="icon picture"></span> Fotos do Mapillary');								
-ControlLayers.addOverlay(olNASC, '<span class="icon water"> Nascentes');								
+//DEP ControlLayers.addOverlay(olNASC, '<span class="icon water"> Nascentes');								
 ControlLayers.addTo(map);
 
 L.control.locate().addTo(map);
@@ -324,11 +326,12 @@ var Escala = L.control.scale({
 Escala.addTo(map);
 
 function CheckOverpassLayers() {
-	if ( map.hasLayer(olNASC) ) {			
+/*	if ( map.hasLayer(olNASC) ) {			
 	     map.attributionControl.addAttribution(attrOverPass);
 	}else {
 	     map.attributionControl.removeAttribution(attrOverPass);
 	}
+DEP */	
 }
 
 map.on('overlayadd', function(e) {
