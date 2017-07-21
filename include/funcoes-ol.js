@@ -6,8 +6,10 @@ function AddDataOverlay(File,Apelido,Icon,IconMini){
     var olTemp = L.mapbox.featureLayer()   
         .loadURL('dados/'+ File +'.geojson')
         .on('layeradd', function(e) {
-             var marker = e.layer;
-             marker.setIcon(Icon);
+             if(Icon != null){
+                 var marker = e.layer;
+                 marker.setIcon(Icon);
+             }
              e.layer.bindPopup(FormatNameDesc(e.layer.feature.properties.Name,e.layer.feature.properties.Description));        
     })
     .on('ready', function() {
