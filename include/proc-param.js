@@ -35,7 +35,7 @@ if (CamadaDeDados !=null){
 	case 'hospedagem' : AddDataOverlay('hospedagem','Hospedagem',HotelIcon,'map'); break; 
 	case 'barrest'    : AddDataOverlay('bares-restaurantes','Bares e Restaurantes',AlimentIcon,'map'); break; 
 	case 'taxi'       : AddDataOverlay('taxi','Táxi',TaxiIcon,'car'); break; 
-	case 'ribeiraorun5k2017'    : AddDataOverlay('ribeiraorun5k2017','Ribeirao Run 5k',UserIconOnClick,'walk'); break; 
+	case 'ribeiraorun5k2017'    : AddDataOverlay('ribeiraorun5k2017','Ribeirao Run 5k',null,'walk'); break; 
         default           : OK = false;
    }
    if(OK){
