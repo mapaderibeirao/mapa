@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Mapas e informações atualizadas sobre Ribeirão Grande - SP">
+   	<title>Streetview - Mapa de Ribeirão Grande - SP</title> 
+
+	<link rel="stylesheet" href="https://npmcdn.com/mapillary-js@1.0.1/dist/mapillary-js.min.css">
+	<script src="https://npmcdn.com/mapillary-js@1.0.1/dist/mapillary-js.min.js"></script>
+	    
+	<link rel="shortcut icon" href="../img/favicon.png" />
+        <link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
+
+        <script src="../include/jquery.min.js" ></script>	    
+        <script src="../include/urlparams.js" ></script>	    
+	<script src="../include/funcoes.js"></script>
+	<script src="../include/base64.js"></script>
+	    
+    </head>
+    <body class="fill-navy dark prose col12 limiter">
+        <div id="mly" class="col11 row11"></div>
+	<div class="col12 center limiter">
+		<h3 class="fancy"> <span class="mapTitulo"></span></h3>
+		<a id="btnMapillary" href="#" class="inline space button icon arrowright fill-green cleafix" >Abrir imagem no Mapillary</a>
+		<a id="btnBackToMap" href="#" class="inline space button icon map cleafix" >Voltar ao mapa</a>		
+	</div>
+	<script>
+		var MapillaryKey = 'w-_ECeSINhVw5S0nNlEOZA';
+		var TestKey = $.urlParam('key');			 
+		var mapLat = -24.26622;
+		var mapLon = -48.41256;
+		var mapZoom = 16;          
+		var mapTit  = '';          
+
+		var TestLat = $.urlParam('lat');
+		var TestLon = $.urlParam('lon');
+		var TestZoom = $.urlParam('zoom');
+		var TestTit  = $.urlParam('tit');
+			 
+		if (TestKey!=null){ MapillaryKey = TestKey;}         
+		if (TestLat!=null){ mapLat = TestLat;}         
+		if (TestLon!=null){ mapLon = TestLon;}         
+		if (TestZoom!=null){ mapZoom = TestZoom;} 		
+		if (TestTit!=null){ mapTit = TestTit;} 		
+		
+    		var mly = new Mapillary.Viewer('mly',
+		'aUJQWHVRZ1J2UkUwRUhoZ2J6SURHUTo3OTY1ZmEyZWY3N2EyYjZl',  // Replace this with your own ClientID
+		MapillaryKey);
+	</script>
+	<script src="proc.js"></script>
+	
+	    
+    </body>
+</html>

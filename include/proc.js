@@ -224,7 +224,7 @@ function MapillaryImgHref(Key) {
 	var Lon = Cnt.lng;
 	var Zoom = map.getZoom();	
 	var Img = '<img width="99%" alt="foto..." src="' + MapillaryImg(Key,320)  + '" />';
-	var Link = GetLinkMapillaryImg(Key);
+	var Link = GetLinkMapillaryImgLite(Lat,Lon,Zoom,Key,null);
 	return HrefFromURLPlus(Link,'','',Img,'_parent'); 
 }
 

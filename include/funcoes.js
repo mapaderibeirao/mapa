@@ -66,6 +66,13 @@ function GetLinkMapillaryImg(ImgKey) {
 	return Link;
 }
 
+
+function GetLinkMapillaryImgLite(Lat,Lon,Zoom,ImgKey,Tit) {
+	var Link = "streetview/?key="+ ImgKey + "&lat="+ Lat + "&lon="+ Lon +"&zoom="+ Zoom;
+	return Link;
+}
+
+
 function GetLinkMapillary(Lat,Lon) {
 //	var Link = "http://www.mapillary.com/map/im/18/" + Lat + "/" + Lon;
 	var Link = "http://www.mapillary.com/map/search/" + Lat + "/" + Lon + "/13";
@@ -173,4 +180,9 @@ function FormatNameDesc(Name,Description){
   var Header = '<h1>'+ Name + '</h1>';
   var Content = '<p>'+ Description + '</p>';
   return Header + Content;
+}
+
+function MapaDeRibeiraoLink(Lt,Lg,Z) {
+	var Link = "https://mapaderibeirao.github.io/mapa/#"+ Z +"/"+ Lt +"/"+ Lg;
+	return Link;
 }
