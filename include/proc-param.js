@@ -33,7 +33,7 @@ if (CamadaDeDados !=null){
    var OK = true;
    switch( CamadaDeDados  ) {
 	case 'ribeiraorun5k2017'  : AddDataOverlay('ribeiraorun5k2017','Ribeirao Run 5k',null,'walk'); break; 
-	case 'mtb18s'             : AddDataOverlay('mtb2018s','MTB 2018 21k',null,'bicycle'); break;
+	case 'mtb18s'             : AddDataOverlay('mtb2018s','MTB 2018 28k',null,'bicycle'); break;
 	case 'mtb18p'             : AddDataOverlay('mtb2018p','MTB 2018 41k',null,'bicycle'); break;		   
         default                   : OK = false;
    }
