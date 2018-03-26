@@ -41,6 +41,8 @@ var BackLinkBase = 'https://mapaderibeirao.github.io/mapa/#12/-24.1267/-48.3721'
 		case 'hospedagem' : MudarTitulo('Onde ficar em Ribeirão Grande'); break; 
 		case 'barrest'    : MudarTitulo('Bares, Restaurantes e Lanchonetes em Ribeirão Grande'); break; 
 		case 'taxi'       : MudarTitulo('Chame um táxi em Ribeirão Grande'); break; 
+		case 'mtb18s'     : MudarTitulo('Desafio Ribeirão Grande de Mountain Bike 2018 28k'); break; 
+		case 'mtb18p'     : MudarTitulo('Desafio Ribeirão Grande de Mountain Bike 2018 41k'); break; 
 	}	      
 	      
 	 PrintGeoJSON(Arquivo);
