@@ -3,7 +3,27 @@
     {
       "type": "Feature",
       "properties": {
-        "color": ""
+        "marker-symbol": "embassy",
+        "Name": "Chegada",
+        "marker-color": "#e55e5e",
+        "marker-size": "medium"
+      },
+      "geometry": {
+        "coordinates": [
+          -48.367132,
+          -24.094968
+        ],
+        "type": "Point"
+      },
+      "id": "1f2b86d8bb459d570fced78207d9bad3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Desafio Ribeirão Grande de Mountain Bike 2018",
+        "stroke": "#f86767",
+        "stroke-width": 5,
+        "Description": "Percurso Sport 28 Km"
       },
       "geometry": {
         "coordinates": [
@@ -2123,6 +2143,24 @@
         "type": "LineString"
       },
       "id": "36baa9eacb66fa0c9b13d037cc4e7362"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Largada",
+        "Description": "Local: Centro Poliesportivo Arlindo Paulino Vaz<br><a href='https://wp.me/p8DR6g-Er'>Saiba mais</a>",
+        "marker-color": "#56b881",
+        "marker-size": "large",
+        "marker-symbol": "bicycle"
+      },
+      "geometry": {
+        "coordinates": [
+          -48.366297,
+          -24.095731
+        ],
+        "type": "Point"
+      },
+      "id": "67e09de4f4fb007f0b25be302bdc3cff"
     }
   ],
   "type": "FeatureCollection"
