@@ -270,8 +270,8 @@ var AlimentIcon =  L.mapbox.marker.icon({
 //Configura um ícone ao clicar no mapa
 var UserIconOnClick =  L.mapbox.marker.icon({
         'marker-size': 'large',
-        'marker-symbol': 'star',
-        'marker-color': 'e55e5e'
+        'marker-symbol': 'plus',
+        'marker-color': '56b881'
     });
 
 var UserTempMarker = L.marker([],{
