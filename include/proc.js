@@ -270,7 +270,7 @@ var AlimentIcon =  L.mapbox.marker.icon({
 //Configura um ícone para aparecer sempre que clicar no mapa
 var UserIconOnClick =  L.mapbox.marker.icon({
         'marker-size': 'large',
-        'marker-symbol': 'information',
+        'marker-symbol': 'information-15',
         'marker-color': '#56b881'
     });
 
