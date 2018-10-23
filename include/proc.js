@@ -381,7 +381,7 @@ map.on('click', function(e) {
    
 //Atualiza elementos ao mover o mapa
 map.on('moveend', function(e) {
-   olMPLL.loadURL(GetAPI_ENDPOINT()); //BETA					
+   //olMPLL.loadURL(GetAPI_ENDPOINT()); //BETA					
 });	
 
 //thanks to http://jsfiddle.net/3fdCD/ from http://stackoverflow.com/questions/22119535/having-trouble-with-leaflet-removelayer
