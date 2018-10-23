@@ -266,13 +266,13 @@ var AlimentIcon =  L.mapbox.marker.icon({
     });
 
 
-
-//Configura um ícone para aparecer sempre que clicar no mapa
+//Configura um ícone ao clicar no mapa
 var UserIconOnClick =  L.mapbox.marker.icon({
         'marker-size': 'large',
-        'marker-symbol': 'info',
+        'marker-symbol': 'star',
         'marker-color': '#56b881'
     });
+
 
 var UserTempMarker = L.marker([],{
                          'draggable' :true,
