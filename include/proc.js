@@ -298,7 +298,7 @@ var olMPLL = L.mapbox.featureLayer()
 
  
 
-olMPLL.loadURL(GetAPI_ENDPOINT());
+//olMPLL.loadURL(GetAPI_ENDPOINT()); //DESATIVADO EM 23/10/2018 - DESATUALIZADO
 //Autocarregamento da camada Mapillary desativado
 //olMPLL.addTo(map);
 //AttrIfLayerIsOn( olMPLL, attrMapillary );
