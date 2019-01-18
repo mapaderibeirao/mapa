@@ -15,7 +15,6 @@ html, body, #mapdiv {
 /*Cores ------------*/
 .mrg-fg-green{color: #4CAF50;}
 .mrg-fg-blue{color: #2a7fff;}
-.mrg-fg-red{color: #ff2a2a;}
 
 
 .leaflet-control-locate {

@@ -1,73 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:url" content="https://mapaderibeirao.github.io/mapa/">
+	<meta property="og:title" content="Título da página ou artigo">
+	<meta property="og:site_name" content="Mapa de Ribeirão Grande - SP">
+	<meta property="og:description" content="Um mapa diferente, atualizado e cheio de recursos para você conhecer Ribeirão Grande - SP, Município de Interesse Turístico">
+
+	<meta property="og:image" content="https://mapaderibeirao.github.io/mapa/img/screenshot.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta property="og:image:width" content="1030"> 
+	<meta property="og:image:height" content="500"> 
+	<meta property="og:type" content="website">
+
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Mapas e informações atualizadas sobre Ribeirão Grande - SP">
-   	<title>Mapa de Ribeirão Grande - SP</title> 
-	<link href="css/geral.css" rel="stylesheet" type="text/css"/>	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="description" content="Um mapa diferente, atualizado e cheio de recursos para você conhecer Ribeirão Grande - SP, Município de Interesse Turístico">
+   <title>Mapa de Ribeirão Grande - SP</title>
 	<link href="css/map.css" rel="stylesheet" type="text/css"/>	
 	<link rel="shortcut icon" href="img/favicon.png" />
-	<!-- Mapbox  -->
-	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
 
-	<link href='//mapbox.com/base/latest/base.css' rel='stylesheet' />
-	<script> 
-		L.mapbox.accessToken   = "pk.eyJ1IjoicHJvamV0b3JnbSIsImEiOiJqeVpremF3In0.SCxZ4ah9ZKxWcELgsKQyWA";
-		var MapillaryID =	"aUJQWHVRZ1J2UkUwRUhoZ2J6SURHUTo3OTY1ZmEyZWY3N2EyYjZl"; //https://a.mapillary.com/  
-	</script>
+	<script src="inc/functions.js"></script>
 
-	<!-- Mapbox Leaflet Locate plugin  -->
-	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css' rel='stylesheet' />	
+	<script src="inc/jquery.min.js" ></script>
+	<!-- LEAFLET -->
+	<script src="leaflet/leaflet.js" ></script>
+	<link href="leaflet/leaflet.css" rel="stylesheet" type="text/css"/>	
+	<!-- Font Awesome's -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">	
 
-	<!-- Mapbox Leaflet Hash plugin  -->
-	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js'></script>
-
-	<!-- Leaflet Geocoder plugin > https://github.com/perliedman/leaflet-control-geocoder -->
-	<link rel="stylesheet" href="css/Control.Geocoder.css" />
-	<script src="include/Control.Geocoder.js"></script>	
-
-	<!-- Leaflet Layer OverPass plugin > https://github.com/kartenkarsten/leaflet-layer-overpass/ -->
-	<link rel="stylesheet" href="css/OverPassLayer.css" />
-	<script src="include/OverPassLayer.js"></script>	
-
-	<!-- Leaflet Heat plugin > https://github.com/kartenkarsten/leaflet-layer-overpass/ -->
-	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.3/leaflet-heat.js'></script>
-
-	<!-- Leaflet MarkerCluster plugin > https://github.com/kartenkarsten/leaflet-layer-overpass/ -->
-	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
-	<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
-
-	<!--  leaflet-side-by-side -->
-	<script src="include/leaflet-side-by-side/leaflet-side-by-side.js"></script>
+	<script src="plugins/leaflet-providers.js"></script>
 	
-	<script src="include/jquery.min.js" ></script>
-	<script src='include/providers.js'></script>
-	<script src="include/funcoes.js"></script>
-	<script src="include/funcoes-ol.js"></script>
-	<script src="include/urlparams.js" ></script>
+	<script src="plugins/locatecontrol/L.Control.Locate.min.js"></script>
+	<link href="plugins/locatecontrol/L.Control.Locate.css" rel="stylesheet" type="text/css"/>	
+		
+	<link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
+	<script src="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js"></script>	
+	
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+	<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
+	<script src="plugins/leaflet-easyprint/bundle.js"></script>	
+	
+	<link rel="stylesheet" href="plugins/leaflet-side-by-side/layout.css" />
+	<script src="plugins/leaflet-side-by-side/leaflet-side-by-side.min.js"></script>
+
+	<script src="plugins/Leaflet.Control.Custom.js"></script>
+
+	<link rel="stylesheet" href="plugins/iconlayers/iconlayers.css" />
+	<script src="plugins/iconlayers/iconlayers.js"></script>
+	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+	<script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>	
+	
+	<script src="plugins/leaflet-hash.js"></script>	
+
+	<script src="plugins/leaflet.edgescalebar.js"></script>	
 </head>
-  <body class="fill-dark">	
-  <div id='geocode-selector'></div> 
-  <div id='mapdiv'></div> 
-  <script src='include/get-param.js'></script> 	
-  <script>
-		var HeatLayer = L.heatLayer([], { minZoom: 5, maxZoom: 17 }); 
-		var ClusterLayer = new L.MarkerClusterGroup(); 
-		var RawOverlaysMB = []; //Overlays como dados brutos 
-		var OverlaysMB = []; //Feature layers 
-		var map = L.mapbox.map('mapdiv'); //Cria o mapa 
-		map.options.maxZoom = 19; 
-		map.setView([-24.1267,-48.3721], 12);
-		var MapHash = L.hash(map); 
-		lMNK.addTo(map); 
-  </script> 
-  <script src='include/proc.js'></script> 
-  <script src='include/proc-param.js'></script> 
-	
-</body>
+  <body>	
+	<div id='mapdiv'></div> 
+	<!-- <script src='include/get-param.js'></script> 	 -->
+	<script src='inc/initlang.js'></script>   	
+	<script src='inc/initmap.js'></script>   	
+	<script src='inc/initplugins.js'></script>   	
+
+  </body>
 </html>
