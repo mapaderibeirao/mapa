@@ -98,3 +98,47 @@ function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	
 	return LinksLegenda; 
 }
+
+//Cria um ícone usando Leaflet.awesome-markers plugin
+//Tamanho: Ainda não implementado = null
+function MakeIconAwesome(Icone,Cor,Tamanho){
+	var tempIcon = L.AwesomeMarkers.icon({
+		icon: Icone,
+		markerColor: Cor,
+		prefix: 'fa'
+	});
+	return tempIcon 
+}
+
+//Funções voltadas para processamento de overlayers
+
+//Adiciona uma camada no mapa com base em um arquivo existente
+//Depende de:
+//		controle mrgControlLayers
+//		plugin omnivore
+
+function mrgAddDataOverlay(File,Apelido,Icon,IconMini){
+    var ResultTemp = [];
+	var olTemp = omnivore.geojson(mrgURLBaseMapasGEOJSON + File + '/' + File +'.geojson'); //Sempre vai estar contido em uma pasta com o mesmo nome do arquivo
+    olTemp.on('layeradd', function(e) {				
+             var marker = e.layer;
+			 var Propriedades = e.layer.feature.properties;
+			 //verifica se existe ícone para alterar
+			 if (typeof Propriedades.icon !== 'undefined') {
+				var Icone = MakeIconAwesome(Propriedades.icon,Propriedades.color,null);
+				marker.setIcon(Icone);
+			 }
+			 marker.bindPopup('<h4>'+Propriedades.Name +'</h4>'+ Propriedades.Description) 
+    })
+    .on('ready', function() {
+		mrgControlLayers.addOverlay(olTemp, '<span class="fas '+  IconMini  +'"> '+  Apelido);   
+		if(!mrgControlLayersShow){
+			$('.leaflet-control-layers').show();
+		}
+        map.addLayer(olTemp);
+        map.fitBounds(olTemp.getBounds());
+    });
+//    ResultTemp[0] = olTemp;
+//    ResultTemp[1] = ClusterTemp;
+//    return ResultTemp;
+}

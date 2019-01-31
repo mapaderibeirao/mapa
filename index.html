@@ -16,11 +16,10 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="description" content="Um mapa diferente, atualizado e cheio de recursos para você conhecer Ribeirão Grande - SP, Município de Interesse Turístico">
-   <title>Mapa de Ribeirão Grande - SP</title>
+    <title>Mapa de Ribeirão Grande - SP</title>
 	<link href="css/map.css" rel="stylesheet" type="text/css"/>	
+	
 	<link rel="shortcut icon" href="img/favicon.png" />
-
-	<script src="inc/functions.js"></script>
 
 	<script src="inc/jquery.min.js" ></script>
 	<!-- LEAFLET -->
@@ -56,13 +55,28 @@
 	<script src="plugins/leaflet-hash.js"></script>	
 
 	<script src="plugins/leaflet.edgescalebar.js"></script>	
+	
+	<script src="plugins/leaflet-omnivore.min.js"></script>	
+	<!-- Leaflet.awesome-markers plugin v2.0 -->
+	<link rel="stylesheet" href="plugins/awesome-markers/leaflet.awesome-markers.css" />
+	<script src="plugins/awesome-markers/leaflet.awesome-markers.js"></script>	
+
+	<!-- Leaflet.markercluster plugin  -->
+	<link rel="stylesheet" href="plugins/markercluster/leaflet.markercluster.css" />
+	<script src="plugins/markercluster/leaflet.markercluster.js"></script>	
+	
+	
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+
+	<script src="inc/functions.js"></script>
+	<script src="inc/urlparams.js"></script>
 </head>
   <body>	
 	<div id='mapdiv'></div> 
-	<!-- <script src='include/get-param.js'></script> 	 -->
+	<script src="inc/urlparam-get.js"></script>
 	<script src='inc/initlang.js'></script>   	
 	<script src='inc/initmap.js'></script>   	
 	<script src='inc/initplugins.js'></script>   	
-
+	<script src="inc/urlparam-proc.js"></script>
   </body>
 </html>

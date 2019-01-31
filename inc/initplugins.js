@@ -1,6 +1,11 @@
 var mrgBarraEscalaLateral = L.edgeScaleBar();
 var mrgRoutingAlvo = mrgLatLonInicial;
 
+//Inicializa camadas adicionais para sobreposição de dados (overlayers)
+var mrgOverlays = {};
+var mrgControlLayers = L.control.layers(null,mrgOverlays, {position: 'topright', collapsed: true});		
+var mrgControlLayersShow = false; 	//para controlar visibilidade do controle
+
 var mrgControlLocate = L.control.locate({
 		icon: 'fa fa-map-marker-alt mrg-fg-blue',
 		strings: {
@@ -109,7 +114,7 @@ var mrgSideBySideControl = new L.control.sideBySide(mrgSideBySideControlFg, mrgS
 //-------------------------------------------------------------------
 var mrgFunctionBtnHome = function(){$(location).attr('href', 'https://mapaderibeiraograndesp.wordpress.com')}
 var mrgButtonHome = L.easyButton('fa-info-circle fa-lg mrg-fg-blue',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
-mrgButtonHome.options.position =    'topright';
+mrgButtonHome.options.position =    'bottomright';
 //----------------------------------------------------- botão comparar
 function mrgTratamentSideBySideIBGE(Camada){
 	 mrgLayerMapnik.addTo(map);
@@ -203,6 +208,8 @@ var mrgBtnEscalaLateral = L.easyButton({
 });
 mrgBtnEscalaLateral.options.position =    'topright';
 
+
+
 function mrgAddPlugins(){
 	mrgEasyPrint.addTo(map);
 	mrgControlLocate.addTo(map);
@@ -213,7 +220,10 @@ function mrgAddPlugins(){
 	mrgButtonHome.addTo(map);
 	mrgButtonCompare.addTo(map);
 	mrgBtnEscalaLateral.addTo(map);
+	mrgControlLayers.addTo(map);
+	$('.leaflet-control-layers').hide();
 }
 
 // Por fim, adiciona os plugins para começar o mapa
 mrgAddPlugins();
+	
