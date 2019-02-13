@@ -1,13 +1,14 @@
 var ThunderforestAPIKey = '8c44f9f9817f4c8faeb76a930142683f';
 var mrgMapOnClickAddLock = false;  //Ao clicar surge um marcador. Loqueia para não criar mais.
 var mrgLatLonInicial = [-24.1267,-48.3721]; 
-
+var mrgIconesOverlay = [];       //Um lugar para guardar os icones que serão usados nas camadas overlay
+var mrgIconesOverlayIndex = [];  //Índice para array anterior
 
 var map = L.map('mapdiv',); //Cria o mapa 
 map.options.maxZoom = 19; 
 map.setView(mrgLatLonInicial, 12);
 
-var hash = new L.Hash(map);
+var hash = new L.Hash(map);	//inicializa o plugin de URL aqui
 
 //Inicializa layers	
 var attrIBGE = '<a href="https://github.com/tmpsantos/IBGETools" title="IBGETools" >IBGETools</a> | <a href="ftp://geoftp.ibge.gov.br/mapas_estatisticos/censo_2010/mapas_de_setores_censitarios" title="Mapas de Setores Censitários" >Mapas de Setores Censitários (2010)</a> by <a href="http://www.ibge.gov.br/" title="IBGE" >IBGE</a> | hospedado por <a href="https://www.mapbox.com/" title="MapBox" >MapBox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'; 	
@@ -37,7 +38,7 @@ function TempMarkerMsg(Lat,Lon,Zoom){
   var Msg = "<div class='mrg-display-latlon'><span class='mrg-fg-blue fas fa-map-marker-alt'></span> "+ mrgTxtMarkerCoord +": <span class='mrg-display-latlon'>"
           + Lat+',<br> '+ Lon + '</span>'
 	  + '</div>'
-	  + '<p class="">' + Opcoes + '</p>';	
+	  + Opcoes;	
    return Msg; 
 }
 mrgUserTempMarker.on('click', function(e) {
@@ -74,7 +75,3 @@ map.on('click', function(e) {
 			}
 	}
 });
-
-
-//AddDataOverlay('https://raw.githubusercontent.com/mapaderibeirao/mapa-beta/master/dados/test','Táxi',null,'fa-taxi');
-

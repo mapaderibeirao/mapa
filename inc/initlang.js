@@ -35,6 +35,7 @@ var mrgTxtEasyPrintA4l = 'A4, paisagem, hor.';
 var mrgTxtControlLocate = 'Centralizar mapa na sua localização';
 
 var mrgTxtButtonHome = 'Saiba mais';
+var mrgTxtButtonApp = 'Gostou deste mapa? Baixe em seu celular!';
 
 //Leaflet sidebyside
 var mrgTxtButtonComp = 'Comparar uma camada com outra';
@@ -92,6 +93,7 @@ if(!mrgBrowserIsPortuguese){
 	mrgTxtControlLocate	= "Show me where I am!"
 
 	mrgTxtButtonHome = 'About...';
+	mrgTxtButtonApp = 'Did you like this map? Download on your mobile!';
 
 	//Leaflet sidebyside
 	mrgTxtButtonComp = 'Compare the layers';

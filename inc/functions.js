@@ -65,6 +65,11 @@ function LinkDoMapa(Lat,Lon,Zoom,Dir){
 	return Link;
 }
 
+function CriarBotao(Link){	
+	var Botao =  "<div class='mrg-button'>"+Link+"</div>";
+	return Botao
+}
+
 function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	var LinksAlvo = "_blank";
 	var PreLinkGraphhpr  = GetLinkGraphhopper(Lat,Lon); 
@@ -86,13 +91,13 @@ function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	var LinkParaMapa = LinkDoMapa(Lat,Lon,Zoom,Dir);
 	
 	LinksLegenda = "<div class='mrg-button-group'>"
-	             + "<div class='mrg-button'>"+LinkParaMapa+"</div>"
-				    + "<div class='mrg-button'>"+LinkGraphhpr+"</div>"
-	             + "<div class='mrg-button'>"+LinkMapillary+"</div>"
-				    + "<div class='mrg-button'>"+LinkF4Map+"</div>"
-	             + "<div class='mrg-button'>"+LinkOSMe+"</div>"
-				    + "<div class='mrg-button'>"+LinkOSMd+"</div>"
-	             + "<div class='mrg-button'>"+LinkNote+"</div>"
+					 + CriarBotao(LinkParaMapa)
+					 + CriarBotao(LinkGraphhpr)
+					 + CriarBotao(LinkMapillary)
+					 + CriarBotao(LinkF4Map)
+					 + CriarBotao(LinkOSMe)
+					 + CriarBotao(LinkOSMd)
+					 + CriarBotao(LinkNote)
 					 + "<div class='mrg-floatstop'></div>"
 	             + "</div><div class='mrg-floatstop'></div>";
 	
@@ -108,27 +113,57 @@ function MakeIconAwesome(Icone,Cor,Tamanho){
 		prefix: 'fa'
 	});
 	return tempIcon 
-}
+};
 
+function GitImgURL(URLBase,Pasta,Arquivo){
+	var URL = '<img src="'+ URLBase + Pasta + '/img/' + Arquivo + '.png' +'">';	
+	return URL;
+};
+
+function ArraySearch(nameKey,myArray){
+	var Ret = -1;
+    for (var i=0; i < myArray.length; i++) {
+        if (myArray[i] === nameKey) {
+            Ret = i;
+        }
+    }
+	return Ret;
+};
 //Funções voltadas para processamento de overlayers
 
 //Adiciona uma camada no mapa com base em um arquivo existente
 //Depende de:
 //		controle mrgControlLayers
 //		plugin omnivore
-
-function mrgAddDataOverlay(File,Apelido,Icon,IconMini){
+function mrgAddDataOverlay(Pasta,Arquivo,Apelido,Icon,IconMini){
     var ResultTemp = [];
-	var olTemp = omnivore.geojson(mrgURLBaseMapasGEOJSON + File + '/' + File +'.geojson'); //Sempre vai estar contido em uma pasta com o mesmo nome do arquivo
-    olTemp.on('layeradd', function(e) {				
+	var olTemp = omnivore.geojson(mrgURLBaseMapasGEOJSON + Pasta + '/' + Arquivo +'.geojson'); //Sempre vai estar contido em uma pasta com o mesmo nome do arquivo
+    olTemp.on('layeradd', function(e) {
+			 var Imagem = "";
              var marker = e.layer;
+			 var LatLon = marker.getLatLng();
 			 var Propriedades = e.layer.feature.properties;
 			 //verifica se existe ícone para alterar
 			 if (typeof Propriedades.icon !== 'undefined') {
-				var Icone = MakeIconAwesome(Propriedades.icon,Propriedades.color,null);
-				marker.setIcon(Icone);
+				 //Se icone é inédito adiciona no banco de dados de ícones
+				 //mrgIconesOverlay.nome serve para relacionar a classe do icone para realizar busca por nome
+				var PropIcon = Propriedades.icon;
+				var PosBusca = ArraySearch(PropIcon,mrgIconesOverlayIndex);
+				if(PosBusca < 0 ){
+					var IconeTemporario = MakeIconAwesome(PropIcon,Propriedades.color,null);			
+					mrgIconesOverlay.push(IconeTemporario);
+					mrgIconesOverlayIndex.push(PropIcon);
+					PosBusca = mrgIconesOverlayIndex.length - 1
+				} 
+				marker.setIcon(mrgIconesOverlay[PosBusca]);
 			 }
-			 marker.bindPopup('<h4>'+Propriedades.Name +'</h4>'+ Propriedades.Description) 
+			 if (typeof Propriedades.img !== 'undefined') { //tem imagem?
+				Imagem = GitImgURL(mrgURLBaseMapasGEOJSON,Pasta,Propriedades.img);
+			 }
+			 
+			 marker.bindPopup('<b>'+Propriedades.name +'</b><br>'+ Imagem + Propriedades.description +
+				HrefFromURLPlus(GetLinkGraphhopper(LatLon.lat,LatLon.lng), "",mrgTxtGraphhpr,"<br><span class='fas fa-route'></span> como chegar","_blank")
+			 ) 
     })
     .on('ready', function() {
 		mrgControlLayers.addOverlay(olTemp, '<span class="fas '+  IconMini  +'"> '+  Apelido);   
@@ -138,7 +173,5 @@ function mrgAddDataOverlay(File,Apelido,Icon,IconMini){
         map.addLayer(olTemp);
         map.fitBounds(olTemp.getBounds());
     });
-//    ResultTemp[0] = olTemp;
-//    ResultTemp[1] = ClusterTemp;
-//    return ResultTemp;
 }
+

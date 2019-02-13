@@ -1,5 +1,4 @@
 var mrgBarraEscalaLateral = L.edgeScaleBar();
-var mrgRoutingAlvo = mrgLatLonInicial;
 
 //Inicializa camadas adicionais para sobreposição de dados (overlayers)
 var mrgOverlays = {};
@@ -12,10 +11,6 @@ var mrgControlLocate = L.control.locate({
         title: mrgTxtControlLocate
     	}
 });
-
-function mrgSetRoutingTarget(Alvo) {
-	mrgRoouting.waypoints[1] = Alvo; 
-}
 
 var mrgControlGeocoder = new L.Control.geocoder({
 	placeholder: mrgTxtGeocoderSearch,
@@ -113,8 +108,12 @@ var mrgSideBySideControl = new L.control.sideBySide(mrgSideBySideControlFg, mrgS
 	
 //-------------------------------------------------------------------
 var mrgFunctionBtnHome = function(){$(location).attr('href', 'https://mapaderibeiraograndesp.wordpress.com')}
-var mrgButtonHome = L.easyButton('fa-info-circle fa-lg mrg-fg-blue',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
-mrgButtonHome.options.position =    'bottomright';
+var mrgButtonHome = L.easyButton('fa-search-plus fa-lg mrg-fg-blue',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
+mrgButtonHome.options.position =    'bottomleft';
+
+var mrgFunctionBtnApp = function(){$(location).attr('href', 'https://wp.me/p8DR6g-rr')}
+var mrgButtonApp = L.easyButton('fa-mobile-alt mrg-fg-blue',mrgFunctionBtnApp,mrgTxtButtonApp,map); 
+mrgButtonApp.options.position =    'bottomleft';
 //----------------------------------------------------- botão comparar
 function mrgTratamentSideBySideIBGE(Camada){
 	 mrgLayerMapnik.addTo(map);
@@ -218,6 +217,7 @@ function mrgAddPlugins(){
 	mrgControlPolylineMeasure.addTo(map); 
 	mrgIconLayersControl.addTo(map);
 	mrgButtonHome.addTo(map);
+	mrgButtonApp.addTo(map);
 	mrgButtonCompare.addTo(map);
 	mrgBtnEscalaLateral.addTo(map);
 	mrgControlLayers.addTo(map);

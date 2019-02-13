@@ -12,6 +12,13 @@ html, body, #mapdiv {
 	clear:both;
 }
 
+/* este trecho força os controles Easy Button a serem mostrados lado a lado */
+.leaflet-bar.easy-button-container.leaflet-control{
+	float: none;
+	clear:both;
+	display :inline-block;
+}
+
 /*Cores ------------*/
 .mrg-fg-green{color: #4CAF50;}
 .mrg-fg-blue{color: #2a7fff;}
