@@ -1,7 +1,5 @@
 //Processamento de parâmentros via URL
 
-
-
 //Se foi solicitado marcador no mapa
 if (mrgMarkerLatLonByURL !=null){ 	
 if (!mrgMapOnClickAddLock){
@@ -16,7 +14,6 @@ if (!mrgMapOnClickAddLock){
 	map.removeLayer(mrgUserTempMarker);
 }		
 }
-
 
 if (mrgCamadaDeDados !=null){ 
    var OK = true;
