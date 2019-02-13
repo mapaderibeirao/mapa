@@ -2,7 +2,7 @@ var mrgBarraEscalaLateral = L.edgeScaleBar();
 
 //Inicializa camadas adicionais para sobreposição de dados (overlayers)
 var mrgOverlays = {};
-var mrgControlLayers = L.control.layers(null,mrgOverlays, {position: 'topright', collapsed: true});		
+var mrgControlLayers = L.control.layers(null,mrgOverlays, {position: 'topright', collapsed: false});		
 var mrgControlLayersShow = false; 	//para controlar visibilidade do controle
 
 var mrgControlLocate = L.control.locate({
