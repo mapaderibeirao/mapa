@@ -57,10 +57,14 @@ function GetLinkNote(Lat,Lon) {
 	return Link;
 }
 
-function LinkDoMapa(Lat,Lon,Zoom,Dir){	
+function LinkDoMapa(Lat,Lon,Zoom,Dir,Param){	
+   var Adicional = "";
+   if (Param != null) {
+   	Adicional = Param
+   };
 	var Host = "http://"+window.location.hostname;
 	var PreLink = Host + Dir + '#' + Zoom + '/' + Lat + '/' + Lon 
-	            + '&mlat=' + Lat + '&mlon=' + Lon
+	            + '&mlat=' + Lat + '&mlon=' + Lon + Adicional;
 	var Link    = HrefFromURLPlus(PreLink,"fas fa-external-link-square-alt mrg-button",mrgTxtPermalink,"","");	
 	return Link;
 }
@@ -88,7 +92,11 @@ function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	PreLinkNote      = GetLinkNote(Lat,Lon); 
 	LinkNote   = HrefFromURLPlus(PreLinkNote,"fas fa-comment mrg-button",mrgTxtNote,"",LinksAlvo);
 		
-	var LinkParaMapa = LinkDoMapa(Lat,Lon,Zoom,Dir);
+	var Par = null;
+	if (mrgCamadaDeDados != null){ 
+		Par = "&dados=" + mrgCamadaDeDados
+	};
+	var LinkParaMapa = LinkDoMapa(Lat,Lon,Zoom,Dir,Par);
 	
 	LinksLegenda = "<div class='mrg-button-group'>"
 					 + CriarBotao(LinkParaMapa)
