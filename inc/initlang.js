@@ -1,7 +1,7 @@
 //Realiza tradução para os textos usados no mapa. O idioma padrão é o Português-BR.
 var mrgBrowserIsPortuguese = BrowserIsPortuguese;
 
-var mrgRooutingLang = 'pt-BR';
+var mrgTxtAtribuicao = 'Município de Interesse Turístico | <a href="http://leafletjs.com" title="Biblioteca JS para mapas interativos">Leaflet</a>'; 
 
 var mrgTxtImgL_MNK = 'Mapa';
 var mrgTxtImgL_MBSt = 'Satélite';
@@ -60,7 +60,7 @@ var mrgTxtMeasureUnitL   = 'Milhas terrestres';
 var mrgTxtMeasureUnitN   = 'Milhas náuticas';
 
 if(!mrgBrowserIsPortuguese){
-	mrgRooutingLang = 'en';
+	mrgTxtAtribuicao = 'Municipality of Tourist Interest | <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>';
 	
 	mrgTxtGraphhpr  = 'Routes';
 	mrgTxtMapillary = 'Streetview';

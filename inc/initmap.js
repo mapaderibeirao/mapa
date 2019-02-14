@@ -5,7 +5,9 @@ var mrgIconesOverlay = [];       //Um lugar para guardar os icones que serão us
 var mrgIconesOverlayIndex = [];  //Serve de índice para localizar ícones por nome no array anterior
 var mrgOverlaysArray = [];		 //Todas as camadas overlay serão guardadas aqui
 
-var map = L.map('mapdiv',); //Cria o mapa 
+var mrgAtribuicao = L.control.attribution({prefix: mrgTxtAtribuicao});
+var map = L.map('mapdiv',{attributionControl: false}); //Cria o mapa
+mrgAtribuicao.addTo(map); 
 map.options.maxZoom = 19; 
 map.setView(mrgLatLonInicial, 12);
 
