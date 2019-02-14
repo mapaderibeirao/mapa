@@ -6,7 +6,7 @@ var mrgControlLayers = L.control.layers(null,mrgOverlays, {position: 'topright',
 var mrgControlLayersShow = false; 	//para controlar visibilidade do controle
 
 var mrgControlLocate = L.control.locate({
-		icon: 'fa fa-map-marker-alt mrg-fg-blue',
+		icon: 'fa fa-map-marker-alt',
 		strings: {
         title: mrgTxtControlLocate
     	}
@@ -62,35 +62,35 @@ var mrgIconLayersDir = './img/iconLayers/';
 var mrgIconLayersControl = new L.control.iconLayers([
         {title: mrgTxtImgL_MNK, 
          layer: mrgLayerMapnik, 
-		icon: mrgIconLayersDir + 'map.png' // 80x80 icon
+		icon: mrgIconLayersDir + 'map.jpg' // 80x80 icon
         },
         {title: mrgTxtImgL_MBSt, 
          layer: mrgLayerMapBoxSat, 
-		icon: mrgIconLayersDir + 'sat.png' 
+		icon: mrgIconLayersDir + 'sat.jpg' 
         },
         {title: mrgTxtImgL_Topo, 
          layer: mrgLayerOpenTopoMap, 
-		icon: mrgIconLayersDir + 'topo.png' 
+		icon: mrgIconLayersDir + 'topo.jpg' 
         },
         {title: mrgTxtImgL_Toner, 
          layer: mrgLayerStamenToner, 
-		icon: mrgIconLayersDir + 'toner.png' 
+		icon: mrgIconLayersDir + 'toner.jpg' 
         },
         {title: mrgTxtImgL_Cyc, 
          layer: mrgLayerCycle, 
-		icon: mrgIconLayersDir + 'cycle.png' 
+		icon: mrgIconLayersDir + 'cycle.jpg' 
         },
         {title: mrgTxtImgL_Out, 
          layer: mrgLayerOutdoors, 
-		icon: mrgIconLayersDir + 'out.png' 
+		icon: mrgIconLayersDir + 'out.jpg' 
         },
         {title: mrgTxtImgL_IBGRr, 
          layer: mrgLayerIBGEr, 
-		icon: mrgIconLayersDir + 'ibger.png' 
+		icon: mrgIconLayersDir + 'ibger.jpg' 
         },
         {title: mrgTxtImgL_IBGRu, 
          layer: mrgLayerIBGEu, 
-		icon: mrgIconLayersDir + 'ibgeu.png' 
+		icon: mrgIconLayersDir + 'ibgeu.jpg' 
         }
     ], {
         position: 'bottomright',
@@ -106,15 +106,28 @@ var mrgIconLayersControl = new L.control.iconLayers([
 
 var mrgSideBySideControl = new L.control.sideBySide(mrgSideBySideControlFg, mrgSideBySideControlBk);	
 	
-//-------------------------------------------------------------------
 var mrgFunctionBtnHome = function(){$(location).attr('href', 'https://mapaderibeiraograndesp.wordpress.com')}
-var mrgButtonHome = L.easyButton('fa-search-plus fa-lg mrg-fg-blue',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
+var mrgButtonHome = L.easyButton('fa-search-plus fa-lg',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
 mrgButtonHome.options.position =    'bottomleft';
 
 var mrgFunctionBtnApp = function(){$(location).attr('href', 'https://wp.me/p8DR6g-rr')}
-var mrgButtonApp = L.easyButton('fa-mobile-alt mrg-fg-blue',mrgFunctionBtnApp,mrgTxtButtonApp,map); 
+var mrgButtonApp = L.easyButton('fa-mobile-alt fa-lg',mrgFunctionBtnApp,mrgTxtButtonApp,map); 
 mrgButtonApp.options.position =    'bottomleft';
-//----------------------------------------------------- botão comparar
+
+function mrgClearOverlays(Layer, index, array) {
+	Layer.removeFrom(map);
+	mrgControlLayers.removeLayer(Layer);
+}	
+var mrgFunctionBtnDadosE = function(){
+	mrgCamadaDeDados = null; //Pra não gerar link do mapa com "dados=..."	
+	mrgOverlaysArray.forEach(mrgClearOverlays);	
+	$('.leaflet-control-layers').hide();
+	mrgButtonDadosExit.removeFrom(map);
+}
+var mrgButtonDadosExit = L.easyButton('fa-times-circle fa-lg mrg-fg-red',mrgFunctionBtnDadosE,mrgTxtButtonDadosE,map); 
+mrgButtonDadosExit.options.position =    'topright';
+
+//botão comparar
 function mrgTratamentSideBySideIBGE(Camada){
 	 mrgLayerMapnik.addTo(map);
 	 mrgSideBySideControlFg = Camada;
@@ -210,6 +223,7 @@ mrgBtnEscalaLateral.options.position =    'topright';
 
 
 function mrgAddPlugins(){
+	mrgControlLayers.addTo(map);
 	mrgEasyPrint.addTo(map);
 	mrgControlLocate.addTo(map);
 	mrgGraphicScale.addTo(map); 
@@ -220,7 +234,6 @@ function mrgAddPlugins(){
 	mrgButtonApp.addTo(map);
 	mrgButtonCompare.addTo(map);
 	mrgBtnEscalaLateral.addTo(map);
-	mrgControlLayers.addTo(map);
 	$('.leaflet-control-layers').hide();
 }
 

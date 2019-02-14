@@ -36,6 +36,7 @@ var mrgTxtControlLocate = 'Centralizar mapa na sua localização';
 
 var mrgTxtButtonHome = 'Saiba mais';
 var mrgTxtButtonApp = 'Gostou deste mapa? Baixe em seu celular!';
+var mrgTxtButtonDadosE = 'Limpar a camada de dados';
 
 //Leaflet sidebyside
 var mrgTxtButtonComp = 'Comparar uma camada com outra';
@@ -94,6 +95,7 @@ if(!mrgBrowserIsPortuguese){
 
 	mrgTxtButtonHome = 'About...';
 	mrgTxtButtonApp = 'Did you like this map? Download on your mobile!';
+	mrgTxtButtonDadosE = 'Clear layer data';
 
 	//Leaflet sidebyside
 	mrgTxtButtonComp = 'Compare the layers';

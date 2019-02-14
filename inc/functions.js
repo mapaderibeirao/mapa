@@ -124,7 +124,7 @@ function MakeIconAwesome(Icone,Cor,Tamanho){
 };
 
 function GitImgURL(URLBase,Pasta,Arquivo){
-	var URL = '<img src="'+ URLBase + Pasta + '/img/' + Arquivo + '.png' +'">';	
+	var URL = '<img src="'+ URLBase + Pasta + '/img/' + Arquivo + '.jpg' +'">';	
 	return URL;
 };
 
@@ -143,7 +143,7 @@ function ArraySearch(nameKey,myArray){
 //Depende de:
 //		controle mrgControlLayers
 //		plugin omnivore
-function mrgAddDataOverlay(Pasta,Arquivo,Apelido,Icon,IconMini){
+function mrgAddDataOverlay(Pasta,Arquivo,Apelido,Icon,IconMini,Enquadrar){
     var ResultTemp = [];
 	var olTemp = omnivore.geojson(mrgURLBaseMapasGEOJSON + Pasta + '/' + Arquivo +'.geojson'); //Sempre vai estar contido em uma pasta com o mesmo nome do arquivo
     olTemp.on('layeradd', function(e) {
@@ -168,18 +168,20 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,Icon,IconMini){
 			 if (typeof Propriedades.img !== 'undefined') { //tem imagem?
 				Imagem = GitImgURL(mrgURLBaseMapasGEOJSON,Pasta,Propriedades.img);
 			 }
-			 
-			 marker.bindPopup('<b>'+Propriedades.name +'</b><br>'+ Imagem + Propriedades.description +
-				HrefFromURLPlus(GetLinkGraphhopper(LatLon.lat,LatLon.lng), "",mrgTxtGraphhpr,"<br><span class='fas fa-route'></span> como chegar","_blank")
-			 ) 
+			 var Conteudo = '<b>'+Propriedades.name +'</b><br>'+ Imagem + Propriedades.description +
+				HrefFromURLPlus(GetLinkGraphhopper(LatLon.lat,LatLon.lng), "",mrgTxtGraphhpr,"<br><span class='fas fa-route'></span> como chegar","_blank");
+			 marker.autoPan = true;
+			 marker.bindPopup(Conteudo,{maxWidth: 150, maxHeight: 300})
     })
     .on('ready', function() {
 		mrgControlLayers.addOverlay(olTemp, '<span class="fas '+  IconMini  +'"> '+  Apelido);   
 		if(!mrgControlLayersShow){
 			$('.leaflet-control-layers').show();
+			mrgButtonDadosExit.addTo(map);
 		}
+		mrgOverlaysArray.push(olTemp); //Registra overlay para poder remover depois
         map.addLayer(olTemp);
-        map.fitBounds(olTemp.getBounds());
+        if(Enquadrar){map.fitBounds(olTemp.getBounds())};
     });
 }
 

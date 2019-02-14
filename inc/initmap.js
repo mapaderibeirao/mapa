@@ -2,7 +2,8 @@ var ThunderforestAPIKey = '8c44f9f9817f4c8faeb76a930142683f';
 var mrgMapOnClickAddLock = false;  //Ao clicar surge um marcador. Loqueia para não criar mais.
 var mrgLatLonInicial = [-24.1267,-48.3721]; 
 var mrgIconesOverlay = [];       //Um lugar para guardar os icones que serão usados nas camadas overlay
-var mrgIconesOverlayIndex = [];  //Índice para array anterior
+var mrgIconesOverlayIndex = [];  //Serve de índice para localizar ícones por nome no array anterior
+var mrgOverlaysArray = [];		 //Todas as camadas overlay serão guardadas aqui
 
 var map = L.map('mapdiv',); //Cria o mapa 
 map.options.maxZoom = 19; 
