@@ -18,7 +18,7 @@ if (!mrgMapOnClickAddLock){
 if (mrgCamadaDeDados !=null){ 
    var OK = true;
    switch( mrgCamadaDeDados  ) {
-	case 'paroquiabomjesus'  : mrgAddDataOverlay('paroquiabomjesus','Paróquia Bom Jesus',null,'church',true); break; 
+	case 'paroquiabomjesus'  : mrgAddDataOverlay('paroquiabomjesus','paroquia','Paróquia Bom Jesus',null,'church',true); break; 
 	case 'turismo'  		 : 
 		mrgAddDataOverlay('turismo','aeb','A & B',null,'utensils',false); 
 		mrgAddDataOverlay('turismo','eventos','Eventos',null,'calendar-alt',false); 
