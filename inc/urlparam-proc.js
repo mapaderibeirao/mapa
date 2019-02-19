@@ -18,12 +18,15 @@ if (!mrgMapOnClickAddLock){
 if (mrgCamadaDeDados !=null){ 
    var OK = true;
    switch( mrgCamadaDeDados  ) {
-	case 'paroquiabomjesus'  : mrgAddDataOverlay('paroquiabomjesus','paroquiabomjesus','Paróquia Bom Jesus',null,'church',true); break; 
-	case 'turismo'  		 : 
-		mrgAddDataOverlay('turismo','aeb','A & B',null,'utensils',false); 
-		mrgAddDataOverlay('turismo','eventos','Eventos',null,'calendar-alt',false); 
-		mrgAddDataOverlay('turismo','atrativos','Atrativos',null,'map-marked-alt',false); 
-		mrgAddDataOverlay('turismo','hospedagem','Hospedagem',null,'bed',true) 
+	case 'paroquiabomjesus': 
+		mrgAddDataOverlay('paroquiabomjesus','paroquiabomjesus','Paróquia Bom Jesus','church','church',false); 
+		mrgAddDataOverlay('paroquiabomjesus','setores','Setores',null,'object-ungroup',true) 
+	break; 
+	case 'turismo'		   : 
+		mrgAddDataOverlay('turismo','aeb','A & B','utensils',null,false); 
+		mrgAddDataOverlay('turismo','eventos','Eventos','calendar-alt',null,false); 
+		mrgAddDataOverlay('turismo','atrativos','Atrativos','map-marked-alt',null,false); 
+		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed',null,true) 
 	break; 
     default                  : OK = false;
    }
