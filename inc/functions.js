@@ -174,15 +174,6 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar)
 				var LatLon = marker.getLatLng();				 
 				if (typeof Propriedades.icon !== 'undefined') {	//verifica se existe ícone para alterar
 					var PosBusca = BuscarIcone(Propriedades.icon,Propriedades.color); 
-					 
-					// var PropIcon = Propriedades.icon;
-					// var PosBusca = ArraySearch(PropIcon,mrgIconesOverlayIndex);
-					// if(PosBusca < 0 ){
-						// var IconeTemporario = MakeIconAwesome(PropIcon,Propriedades.color,null);			
-						// mrgIconesOverlay.push(IconeTemporario);
-						// mrgIconesOverlayIndex.push(PropIcon);
-						// PosBusca = mrgIconesOverlayIndex.length - 1
-					// } 
 				}else{
 					var PosBusca = BuscarIcone(IconDefault,null)				 
 				}				 
