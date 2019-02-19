@@ -83,7 +83,7 @@ function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	var PreLinkOSMd      = GetLinkOSMd(Lat,Lon,Zoom);
 	
 	var LinkRoute   	= HrefFromURLPlus("#",     "fas fa-map-pin mrg-button","mrgTxtGraphhpr","",LinksAlvo);
-	var LinkGraphhpr  = HrefFromURLPlus(PreLinkGraphhpr,     "fas fa-route mrg-button",mrgTxtGraphhpr,"",LinksAlvo);
+	var LinkGraphhpr  = HrefFromURLPlus(PreLinkGraphhpr,     "fas fa-directions mrg-button",mrgTxtGraphhpr,"",LinksAlvo);
 	var LinkMapillary = HrefFromURLPlus(PreLinkMapillary,"fas fa-street-view mrg-button",mrgTxtMapillary,"",LinksAlvo);
 	var LinkF4Map     = HrefFromURLPlus(PreLinkF4Map,    "fas fa-cube mrg-button",mrgTxtF4Map,"",LinksAlvo);
 	var LinkOSMe      = HrefFromURLPlus(PreLinkOSMe,     "fas fa-pen-square  mrg-button",mrgTxtOSMe,"",LinksAlvo);
@@ -137,44 +137,82 @@ function ArraySearch(nameKey,myArray){
     }
 	return Ret;
 };
-//Funções voltadas para processamento de overlayers
 
+//Se icone é inédito adiciona no banco de dados de ícones
+//mrgIconesOverlay.nome serve para relacionar a classe do icone para realizar busca por nome
+function BuscarIcone(PropIcon,ColorIcon){
+	if(ColorIcon == null){ ColorIcon = 'blue'};
+	if(PropIcon == null){ PropIcon = 'circle'};
+	var PosBusca = ArraySearch(PropIcon,mrgIconesOverlayIndex);
+	if(PosBusca < 0 ){
+		var IconeTemporario = MakeIconAwesome(PropIcon,ColorIcon,null);			
+		mrgIconesOverlay.push(IconeTemporario);
+		mrgIconesOverlayIndex.push(PropIcon);
+		PosBusca = mrgIconesOverlayIndex.length - 1
+	}	
+	return PosBusca
+};
+
+//Funções voltadas para processamento de overlayers
+//IconDefault é uma string que determina um ícone padrão para todos caso não especificado
 //Adiciona uma camada no mapa com base em um arquivo existente
 //Depende de:
 //		controle mrgControlLayers
 //		plugin omnivore
-function mrgAddDataOverlay(Pasta,Arquivo,Apelido,Icon,IconMini,Enquadrar){
+function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar){
     var ResultTemp = [];
 	var olTemp = omnivore.geojson(mrgURLBaseMapasGEOJSON + Pasta + '/' + Arquivo +'.geojson'); //Sempre vai estar contido em uma pasta com o mesmo nome do arquivo
     olTemp.on('layeradd', function(e) {
+			 var IsMarker = true;
 			 var Imagem = "";
              var marker = e.layer;
-			 var LatLon = marker.getLatLng();
-			 var Propriedades = e.layer.feature.properties;
-			 //verifica se existe ícone para alterar
-			 if (typeof Propriedades.icon !== 'undefined') {
-				 //Se icone é inédito adiciona no banco de dados de ícones
-				 //mrgIconesOverlay.nome serve para relacionar a classe do icone para realizar busca por nome
-				var PropIcon = Propriedades.icon;
-				var PosBusca = ArraySearch(PropIcon,mrgIconesOverlayIndex);
-				if(PosBusca < 0 ){
-					var IconeTemporario = MakeIconAwesome(PropIcon,Propriedades.color,null);			
-					mrgIconesOverlay.push(IconeTemporario);
-					mrgIconesOverlayIndex.push(PropIcon);
-					PosBusca = mrgIconesOverlayIndex.length - 1
-				} 
-				marker.setIcon(mrgIconesOverlay[PosBusca]);
-			 }
+			 var Propriedades = marker.feature.properties;
+			 var Tipo         = marker.feature.geometry.type;
+			 if(Tipo == 'LineString'){IsMarker = false};
+			 //Aqui trata da formatação de cada elemento. Se for marcador, define ícone. Do contrário, trata como polígono.
+			 if(IsMarker){
+				var LatLon = marker.getLatLng();				 
+				if (typeof Propriedades.icon !== 'undefined') {	//verifica se existe ícone para alterar
+					var PosBusca = BuscarIcone(Propriedades.icon,Propriedades.color); 
+					 
+					// var PropIcon = Propriedades.icon;
+					// var PosBusca = ArraySearch(PropIcon,mrgIconesOverlayIndex);
+					// if(PosBusca < 0 ){
+						// var IconeTemporario = MakeIconAwesome(PropIcon,Propriedades.color,null);			
+						// mrgIconesOverlay.push(IconeTemporario);
+						// mrgIconesOverlayIndex.push(PropIcon);
+						// PosBusca = mrgIconesOverlayIndex.length - 1
+					// } 
+				}else{
+					var PosBusca = BuscarIcone(IconDefault,null)				 
+				}				 
+ 				marker.setIcon(mrgIconesOverlay[PosBusca]);
+			 }else{
+				 marker.setStyle({
+					 color:		  Propriedades.color,
+					 fillColor:   Propriedades.fillColor,
+					 fillOpacity: Propriedades.fillOpacity,
+					 fill:		  Propriedades.fill
+				 })				 
+			 };
+			 //Verifica o atributo img, que aponta para uma imagem previamente hospedada no local especificado
 			 if (typeof Propriedades.img !== 'undefined') { //tem imagem?
 				Imagem = GitImgURL(mrgURLBaseMapasGEOJSON,Pasta,Propriedades.img);
 			 }
-			 var Conteudo = '<b>'+Propriedades.name +'</b><br>'+ Imagem + Propriedades.description +
-				HrefFromURLPlus(GetLinkGraphhopper(LatLon.lat,LatLon.lng), "",mrgTxtGraphhpr,"<br><span class='fas fa-route'></span> como chegar","_blank");
+			 //Se for marcador adiciona opção de rota, como chegar
+			 var URLchegar = "";
+			 if(IsMarker){ 
+				var URLchegar = HrefFromURLPlus(
+								GetLinkGraphhopper(LatLon.lat,LatLon.lng), "",mrgTxtGraphhpr,"<br><span class='fas fa-directions'></span> como chegar","_blank"
+								);
+			 };
+
+			 var Conteudo = '<b>'+Propriedades.name +'</b><br>'+ Imagem + Propriedades.description + URLchegar;
 			 marker.autoPan = true;
-			 marker.bindPopup(Conteudo,{maxWidth: 150, maxHeight: 300})
+			 marker.bindPopup(Conteudo,{maxWidth: 160, maxHeight: 300})
     })
     .on('ready', function() {
-		mrgControlLayers.addOverlay(olTemp, '<span class="fas '+  IconMini  +'"> '+  Apelido);   
+		mrgControlLayers.addOverlay(olTemp, '<span class="fas fa-'+  IconMini  +'"> '+  Apelido);   
 		if(!mrgControlLayersShow){
 			$('.leaflet-control-layers').show();
 			mrgButtonDadosExit.addTo(map);
@@ -184,4 +222,3 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,Icon,IconMini,Enquadrar){
         if(Enquadrar){map.fitBounds(olTemp.getBounds())};
     });
 }
-
