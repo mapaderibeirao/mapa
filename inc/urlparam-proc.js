@@ -19,8 +19,9 @@ if (mrgCamadaDeDados !=null){
    var OK = true;
    switch( mrgCamadaDeDados  ) {
 	case 'paroquiabomjesus': 
-		mrgAddDataOverlay('paroquiabomjesus','setores','Setores',null,'puzzle-piece',true) 
-		mrgAddDataOverlay('paroquiabomjesus','paroquiabomjesus','Paróquia Bom Jesus','cross','church',false); 
+		mrgAddDataOverlay('paroquiabomjesus','setores','Setores',null,'puzzle-piece',true); 
+		mrgAddDataOverlay('paroquiabomjesus','extra','Extra','church',null,false); 
+		mrgAddDataOverlay('paroquiabomjesus','paroquiabomjesus','Paróquia Bom Jesus','cross','church',false) 
 	break; 
 	case 'turismo'		   : 
 		mrgAddDataOverlay('turismo','aeb','A & B','utensils',null,false); 
