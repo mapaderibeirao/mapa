@@ -27,7 +27,7 @@ if (mrgCamadaDeDados !=null){
 		mrgAddDataOverlay('turismo','aeb','A & B','utensils',null,false); 
 		mrgAddDataOverlay('turismo','eventos','Eventos','calendar-alt',null,false); 
 		mrgAddDataOverlay('turismo','atrativos','Atrativos','map-marked-alt',null,false); 
-		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed',null,true) 
+		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed',null,false) 
 	break; 
     default                  : OK = false;
    }
