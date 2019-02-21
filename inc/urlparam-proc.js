@@ -24,10 +24,10 @@ if (mrgCamadaDeDados !=null){
 		mrgAddDataOverlay('paroquiabomjesus','paroquiabomjesus','Paróquia Bom Jesus','cross','church',false) 
 	break; 
 	case 'turismo'		   : 
-		mrgAddDataOverlay('turismo','aeb','A & B','utensils',null,false); 
-		mrgAddDataOverlay('turismo','eventos','Eventos','calendar-alt',null,false); 
-		mrgAddDataOverlay('turismo','atrativos','Atrativos','map-marked-alt',null,false); 
-		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed',null,false) 
+		mrgAddDataOverlay('turismo','aeb','A & B','utensils','utensils',false); 
+		mrgAddDataOverlay('turismo','eventos','Eventos','calendar-alt','calendar-alt',false); 
+		mrgAddDataOverlay('turismo','atrativos','Atrativos','map-marked-alt','map-marked-alt',false); 
+		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed','bed',false) 
 	break; 
     default                  : OK = false;
    }
