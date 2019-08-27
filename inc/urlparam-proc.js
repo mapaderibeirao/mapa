@@ -32,7 +32,7 @@ if (mrgCamadaDeDados !=null){
 		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed','bed',false) 
 	break; 
 	case 'rtcma'		   : 
-		mrgAddDataOverlay('rtcma','rtcma','RTCMA','map-marked-alt','map-marked-alt',true); 
+		mrgAddDataOverlay('rtcma','rtcma','RT Cavernas da Mata Atlântica','map-marked-alt','map-marked-alt',true); 
 	break; 
     default                        : OK = false;
    }
