@@ -15,6 +15,8 @@ if (!mrgMapOnClickAddLock){
 }		
 }
 
+//INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar)
+
 if (mrgCamadaDeDados !=null){ 
    var OK = true;
    switch( mrgCamadaDeDados  ) {
@@ -30,7 +32,7 @@ if (mrgCamadaDeDados !=null){
 		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed','bed',false) 
 	break; 
 	case 'rtcma'		   : 
-		mrgAddDataOverlay('rtcma','rtcma','RTCMA','map-marked-alt','object-group',false); 
+		mrgAddDataOverlay('rtcma','rtcma','RTCMA','map-marked-alt','object-group',true); 
 	break; 
     default                        : OK = false;
    }
