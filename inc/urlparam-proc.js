@@ -32,7 +32,7 @@ if (mrgCamadaDeDados !=null){
 		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed','bed',false) 
 	break; 
 	case 'rtcma'		   : 
-		mrgAddDataOverlay('rtcma','rtcma','RTCMA','map-marked-alt','object-group',true); 
+		mrgAddDataOverlay('rtcma','rtcma','RTCMA','map-marked-alt','map-marked-alt',true); 
 	break; 
     default                        : OK = false;
    }
