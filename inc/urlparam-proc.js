@@ -29,6 +29,9 @@ if (mrgCamadaDeDados !=null){
 		mrgAddDataOverlay('turismo','atrativos','Atrativos','map-marked-alt','map-marked-alt',false); 
 		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed','bed',false) 
 	break; 
-    default                  : OK = false;
+	case 'rtcma'		   : 
+		mrgAddDataOverlay('rtcma','rtcma','RTCMA','map-marked-alt','object-group',false); 
+	break; 
+    default                        : OK = false;
    }
 }
