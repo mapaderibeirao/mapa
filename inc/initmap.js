@@ -18,7 +18,7 @@ var attrIBGE = '<a href="https://github.com/tmpsantos/IBGETools" title="IBGETool
 var mrgLayerMapnik = L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map);
 var mrgLayerMapBoxSat = L.tileLayer.provider('MapBox', {id: 'mapbox.streets-satellite',accessToken: 'pk.eyJ1IjoicHJvamV0b3JnbSIsImEiOiJqeVpremF3In0.SCxZ4ah9ZKxWcELgsKQyWA'});
 //var mrgLayerOpenTopoMap = L.tileLayer.provider('OpenTopoMap');
-var mrgLayerOpenTopoMap = L.tileLayer.provider('Thunderforest.MobileAtlas');
+var mrgLayerOpenTopoMap = L.tileLayer.provider('Thunderforest.MobileAtlas',{apikey: ThunderforestAPIKey});					
 
 var mrgLayerStamenToner = L.tileLayer.provider('Stamen.TonerLite');
 var mrgLayerCycle = L.tileLayer.provider('Thunderforest.OpenCycleMap',{apikey: ThunderforestAPIKey});
