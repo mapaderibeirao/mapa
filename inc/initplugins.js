@@ -107,7 +107,7 @@ var mrgIconLayersControl = new L.control.iconLayers([
 var mrgSideBySideControl = new L.control.sideBySide(mrgSideBySideControlFg, mrgSideBySideControlBk);	
 	
 var mrgFunctionBtnHome = function(){$(location).attr('href', 'https://mapaderibeiraograndesp.wordpress.com')}
-var mrgButtonHome = L.easyButton('fa-search-plus fa-lg',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
+var mrgButtonHome = L.easyButton('fa-info fa-lg',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
 mrgButtonHome.options.position =    'bottomleft';
 
 var mrgFunctionBtnApp = function(){$(location).attr('href', 'https://wp.me/p8DR6g-rr')}
