@@ -16,13 +16,15 @@ if (!mrgMapOnClickAddLock){
 }
 
 //INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar)
+mrgAddDataOverlay('global','perimetro-rg','Limites',null,'vector-square',true); 
+
 
 if (mrgCamadaDeDados !=null){ 
    var OK = true;
    switch( mrgCamadaDeDados  ) {
 	case 'paroquiabomjesus': 
 		mrgAddDataOverlay('paroquiabomjesus','extra','Extra','church',null,false); 
-		mrgAddDataOverlay('paroquiabomjesus','setores','Setores',null,'puzzle-piece',true); 
+//		mrgAddDataOverlay('paroquiabomjesus','setores','Setores',null,'puzzle-piece',true); 
 		mrgAddDataOverlay('paroquiabomjesus','paroquiabomjesus','Paróquia Bom Jesus','cross','church',false) 
 	break; 
 	case 'turismo'		   : 
