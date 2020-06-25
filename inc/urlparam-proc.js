@@ -36,6 +36,10 @@ if (mrgCamadaDeDados !=null){
 	case 'rtcma'		   : 
 		mrgAddDataOverlay('rtcma','rtcma','RT Cavernas da Mata Atlântica','map-marked-alt','map-marked-alt',true); 
 	break; 
+	case 'coronavirus'		   : 
+		mrgAddDataOverlay('covid19','confirmados','Casos Confirmados','virus','virus',false); 
+		mrgAddDataOverlay('covid19','curados','Casos Curados','hand-sparkles','hand-sparkles',false); 
+	break; 		   
     default                        : OK = false;
    }
 }
