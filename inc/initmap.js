@@ -103,4 +103,3 @@ var mrgHeatMap = L.heatLayer([
 	blur: 80});
 
 mrgHeatMap.addTo(map);
-				 

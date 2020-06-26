@@ -1,5 +1,6 @@
 var mrgBarraEscalaLateral = L.edgeScaleBar();
 
+
 //Inicializa camadas adicionais para sobreposição de dados (overlayers)
 var mrgOverlays = {};
 var mrgControlLayers = L.control.layers(null,mrgOverlays, {position: 'topright', collapsed: false});		
@@ -121,6 +122,10 @@ var mrgIconLayersControl = new L.control.iconLayers([
 	 });	
 
 var mrgSideBySideControl = new L.control.sideBySide(mrgSideBySideControlFg, mrgSideBySideControlBk);	
+	
+var mrgFunctionBtnCOVID = function(){$(location).attr('href', 'https://mapaderibeiraograndesp.wordpress.com/boletim-coronavirus/')}
+var mrgButtonCOVID = L.easyButton('fa-notes-medical fa-lg mrg-fg-blue',mrgFunctionBtnCOVID,'CORONAVÍRUS - BOLETINS',map); 
+mrgButtonCOVID.options.position =    'topright';	
 	
 var mrgFunctionBtnHome = function(){$(location).attr('href', 'https://mapaderibeiraograndesp.wordpress.com')}
 var mrgButtonHome = L.easyButton('fa-info fa-lg',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
@@ -250,6 +255,7 @@ function mrgAddPlugins(){
 	mrgButtonApp.addTo(map);
 	mrgButtonCompare.addTo(map);
 	mrgBtnEscalaLateral.addTo(map);
+	mrgButtonCOVID.addTo(map);
 	$('.leaflet-control-layers').hide();
 }
 

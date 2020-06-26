@@ -1,0 +1,26 @@
+{
+  "name": "leaflet-legend",
+  "version": "1.0.1",
+  "description": "A Leaflet plugin to add a legend to a map",
+  "main": "leaflet-legend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zostera/leaflet-legend.git"
+  },
+  "keywords": [
+    "Leaflet",
+    "legend"
+  ],
+  "author": "Michael Skaug",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zostera/leaflet-legend/issues"
+  },
+  "homepage": "https://github.com/zostera/leaflet-legend#readme",
+  "dependencies": {
+    "leaflet": "^1.3.1"
+  }
+}
