@@ -1,5 +1,5 @@
 //Realiza tradução para os textos usados no mapa. O idioma padrão é o Português-BR.
-var mrgBrowserIsPortuguese = BrowserIsPortuguese;
+var mrgBrowserIsPortuguese = BrowserIsPortuguese();
 
 var mrgTxtAtribuicao = '<a href="http://bit.ly/2MEUbZB" title="MIT">Município de Interesse Turístico</a> | <a href="http://leafletjs.com" title="Biblioteca JS para mapas interativos">Leaflet</a>';
 

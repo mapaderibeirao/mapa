@@ -82,7 +82,7 @@ function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	var PreLinkOSMe      = GetLinkOSMe(Lat,Lon,Zoom);
 	var PreLinkOSMd      = GetLinkOSMd(Lat,Lon,Zoom);
 	
-	var LinkRoute   	= HrefFromURLPlus("#",     "fas fa-map-pin mrg-button","mrgTxtGraphhpr","",LinksAlvo);
+	var LinkRoute   	= HrefFromURLPlus("#",     "fas fa-map-pin mrg-button",mrgTxtGraphhpr,"",LinksAlvo);
 	var LinkGraphhpr  = HrefFromURLPlus(PreLinkGraphhpr,     "fas fa-directions mrg-button",mrgTxtGraphhpr,"",LinksAlvo);
 	var LinkMapillary = HrefFromURLPlus(PreLinkMapillary,"fas fa-street-view mrg-button",mrgTxtMapillary,"",LinksAlvo);
 	var LinkF4Map     = HrefFromURLPlus(PreLinkF4Map,    "fas fa-cube mrg-button",mrgTxtF4Map,"",LinksAlvo);
@@ -159,7 +159,9 @@ function BuscarIcone(PropIcon,ColorIcon){
 //Depende de:
 //		controle mrgControlLayers
 //		plugin omnivore
-function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar){
+//INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,Heat,Cluster)
+//Os parâmetros podem ser passados de forma mais estruturada... verificar depois
+function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,AddHeat,AddCluster){
     var ResultTemp = [];
 	var olTemp = omnivore.geojson(mrgURLBaseMapasGEOJSON + Pasta + '/' + Arquivo +'.geojson'); //Sempre vai estar contido em uma pasta com o mesmo nome do arquivo
     olTemp.on('layeradd', function(e) {
@@ -178,6 +180,11 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar)
 					var PosBusca = BuscarIcone(IconDefault,null)				 
 				}				 
  				marker.setIcon(mrgIconesOverlay[PosBusca]);
+				//Se não usar cluster, usa opção spiderfy
+				if (!AddCluster){
+					mrgOverlappingMS.addMarker(marker); //dev
+				}
+				if (AddHeat){mrgHeatMap.addLatLng(LatLon)} 	//Se pedir pra por no Heat map...
 			 }else{
 				 marker.setStyle({
 					 color:		  Propriedades.color,
@@ -208,8 +215,16 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar)
 			$('.leaflet-control-layers').show();
 			mrgButtonDadosExit.addTo(map);
 		}
-		mrgOverlaysArray.push(olTemp); //Registra overlay para poder remover depois
-        map.addLayer(olTemp);
+		mrgOverlaysArray.push(olTemp); //Registra overlay para poder remover depois					
+		//Se usar Cluster, não precisa por no mapa de novo
+		if (AddCluster){			
+			mrgCluster.addLayer(olTemp); //dev
+			mrgMapHasCluster = true;
+		} else{
+//			map.addLayer(olTemp)	//dev
+		}
+		map.addLayer(olTemp);
+
         if(Enquadrar){map.fitBounds(olTemp.getBounds())};
     });
 }

@@ -1,5 +1,12 @@
 var ThunderforestAPIKey = '8c44f9f9817f4c8faeb76a930142683f';
-var mrgMapOnClickAddLock = false;  //Ao clicar surge um marcador. Loqueia para não criar mais.
+var mrgMapOnClickAddLock = false;  //Ao clicar surge um marcador. Bloqueia para não criar mais.
+var mrgMapHasCluster = false;  //Controla se está usando o crontrole de cluster
+var ClusterON = true; 
+var HeatON = true;
+var ClusterOFF = false;
+var HeatOFF = false;
+
+
 var mrgLatLonInicial = [-24.1267,-48.3721]; 
 var mrgIconesOverlay = [];       //Um lugar para guardar os icones que serão usados nas camadas overlay
 var mrgIconesOverlayIndex = [];  //Serve de índice para localizar ícones por nome no array anterior
@@ -80,3 +87,20 @@ map.on('click', function(e) {
 			}
 	}
 });
+
+var mrgCluster = L.markerClusterGroup();
+map.addLayer(mrgCluster);
+
+//Create an OverlappingMarkerSpiderfier instance:
+var mrgOverlappingMS = new OverlappingMarkerSpiderfier(map);
+
+//Heat map
+var mrgHeatMap = L.heatLayer([
+[50.5, 30.5, 0.2], // lat, lng, intensity
+[50.6, 30.4, 0.5]
+], {maxZoom: 14,
+	radius: 72,
+	blur: 80});
+
+mrgHeatMap.addTo(map);
+				 

@@ -3,6 +3,22 @@ var mrgBarraEscalaLateral = L.edgeScaleBar();
 //Inicializa camadas adicionais para sobreposição de dados (overlayers)
 var mrgOverlays = {};
 var mrgControlLayers = L.control.layers(null,mrgOverlays, {position: 'topright', collapsed: false});		
+
+//Faz interação com o uso de Cluster nos marcadores, para que as overlayers sejam retiradas dos cluster também ao serem desmarcadas
+map.on('overlayremove', function(e) {
+	if (mrgMapHasCluster){
+		var Camada = e.layer;
+		mrgCluster.removeLayer(Camada)
+	}
+});
+map.on('overlayadd', function(e) {
+	if (mrgMapHasCluster){
+		var Camada = e.layer;
+		mrgCluster.addLayer(Camada);
+	}
+});
+
+
 var mrgControlLayersShow = false; 	//para controlar visibilidade do controle
 
 var mrgControlLocate = L.control.locate({
