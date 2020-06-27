@@ -5,6 +5,7 @@ var ClusterON = true;
 var HeatON = true;
 var ClusterOFF = false;
 var HeatOFF = false;
+var mrgURLBoletimCOVID = 'https://wp.me/p8DR6g-166';
 
 
 var mrgLatLonInicial = [-24.1267,-48.3721]; 

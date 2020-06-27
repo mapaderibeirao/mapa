@@ -201,7 +201,8 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
 			 var URLchegar = "";
 			 if(IsMarker){ 
 				var URLchegar = HrefFromURLPlus(
-								GetLinkGraphhopper(LatLon.lat,LatLon.lng), "",mrgTxtGraphhpr,"<br><span class='fas fa-directions'></span> como chegar","_blank"
+								//GetLinkGraphhopper(LatLon.lat,LatLon.lng), "",mrgTxtGraphhpr,"<br><span class='fas fa-directions'></span> como chegar","_blank"
+								mrgURLBoletimCOVID, "","FIQUE EM CASA","<br><span class='fas fa-heart'></span> fique em casa.","_parent"
 								);
 			 };
 
