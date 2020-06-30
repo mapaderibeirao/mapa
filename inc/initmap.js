@@ -1,10 +1,6 @@
 var ThunderforestAPIKey = '8c44f9f9817f4c8faeb76a930142683f';
 var mrgMapOnClickAddLock = false;  //Ao clicar surge um marcador. Bloqueia para não criar mais.
 var mrgMapHasCluster = false;  //Controla se está usando o crontrole de cluster
-var ClusterON = true; 
-var HeatON = true;
-var ClusterOFF = false;
-var HeatOFF = false;
 var mrgURLBoletimCOVID = 'https://wp.me/p8DR6g-166';
 
 

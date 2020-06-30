@@ -1,3 +1,9 @@
+var ClusterON = true; 
+var HeatON = true;
+var ClusterOFF = false;
+var HeatOFF = false;
+var OvCountON = true;
+var OvCountOFF = false;
 
 function BrowserIsPortuguese(){ 
     var Valor = false;
@@ -161,7 +167,8 @@ function BuscarIcone(PropIcon,ColorIcon){
 //		plugin omnivore
 //INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,Heat,Cluster)
 //Os parâmetros podem ser passados de forma mais estruturada... verificar depois
-function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,AddHeat,AddCluster){
+function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,AddHeat,AddCluster,ContarItens){
+	var ContM = 0;
     var ResultTemp = [];
 	var olTemp = omnivore.geojson(mrgURLBaseMapasGEOJSON + Pasta + '/' + Arquivo +'.geojson'); //Sempre vai estar contido em uma pasta com o mesmo nome do arquivo
     olTemp.on('layeradd', function(e) {
@@ -173,6 +180,7 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
 			 if(Tipo == 'LineString'){IsMarker = false};
 			 //Aqui trata da formatação de cada elemento. Se for marcador, define ícone. Do contrário, trata como polígono.
 			 if(IsMarker){
+				ContM = ContM + 1; 
 				var LatLon = marker.getLatLng();				 
 				if (typeof Propriedades.icon !== 'undefined') {	//verifica se existe ícone para alterar
 					var PosBusca = BuscarIcone(Propriedades.icon,Propriedades.color); 
@@ -211,7 +219,10 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
 			 marker.bindPopup(Conteudo,{maxWidth: 160, maxHeight: 300})
     })
     .on('ready', function() {
-		mrgControlLayers.addOverlay(olTemp, '<span class="fas fa-'+  IconMini  +'"> '+  Apelido);   
+		var TextoTemp = "";
+		if(ContarItens){ TextoTemp = ContM + " "; };
+		
+		mrgControlLayers.addOverlay(olTemp, '<span class="fas fa-'+  IconMini  +'"> <span class="mrg-ovlayer-'+Arquivo+ '">'+ TextoTemp + Apelido + '</span>');   
 		if(!mrgControlLayersShow){
 			$('.leaflet-control-layers').show();
 			mrgButtonDadosExit.addTo(map);
@@ -229,3 +240,7 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
         if(Enquadrar){map.fitBounds(olTemp.getBounds())};
     });
 }
+
+function TrocaTexto(Classe,Conteudo){
+	$( Classe ).text(Conteudo);
+};
