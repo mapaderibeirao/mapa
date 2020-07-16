@@ -38,10 +38,10 @@ if (mrgCamadaDeDados !=null){
 		mrgAddDataOverlay('rtcma','rtcma','RT Cavernas da Mata Atlântica','map-marked-alt','map-marked-alt',true,HeatOFF,ClusterOFF,OvCountOFF); 
 	break; 
 	case 'coronavirus'		   : 
-		mrgAddDataOverlay('covid19','confirmados','CONFIRMADOS 27/JUN','virus','virus',false,HeatON,ClusterON,OvCountON); 
-		mrgAddDataOverlay('covid19','curados','CURADOS 27/JUN','hand-sparkles','hand-sparkles',false,HeatON,ClusterON,OvCountON); 
-		mrgAddDataOverlay('covid19','suspeitos','SUSPEITOS 27/JUN','exclamation-triangle','exclamation-triangle',false,HeatOFF,ClusterON,OvCountON); 
-		mrgAtribuicao.addAttribution("DIVULGADO PELA SAÚDE EM 27/JUN/2020 - Prefeitura Municipal");
+		mrgAddDataOverlay('covid19','confirmados','CONFIRMADOS','virus','virus',false,HeatON,ClusterON,OvCountON); 
+		//mrgAddDataOverlay('covid19','curados','CURADOS','hand-sparkles','hand-sparkles',false,HeatON,ClusterON,OvCountON); 
+		//mrgAddDataOverlay('covid19','suspeitos','SUSPEITOS','exclamation-triangle','exclamation-triangle',false,HeatOFF,ClusterON,OvCountON); 
+		mrgAtribuicao.addAttribution("Departamento de Saúde - Prefeitura Municipal");
 	break; 		   
     default                        : OK = false;
    }
