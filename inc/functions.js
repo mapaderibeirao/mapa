@@ -233,9 +233,9 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
 			mrgCluster.addLayer(olTemp); //dev
 			mrgMapHasCluster = true;
 		} else{
-//			map.addLayer(olTemp)	//dev
+			map.addLayer(olTemp)	//dev
 		}
-		map.addLayer(olTemp);
+//		map.addLayer(olTemp);
 
         if(Enquadrar){map.fitBounds(olTemp.getBounds())};
     });
