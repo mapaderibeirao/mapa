@@ -20,7 +20,8 @@ var hash = new L.Hash(map);	//inicializa o plugin de URL aqui
 //Inicializa layers	
 var attrIBGE = '<a href="https://github.com/tmpsantos/IBGETools" title="IBGETools" >IBGETools</a> | <a href="ftp://geoftp.ibge.gov.br/mapas_estatisticos/censo_2010/mapas_de_setores_censitarios" title="Mapas de Setores Censitários" >Mapas de Setores Censitários (2010)</a> by <a href="http://www.ibge.gov.br/" title="IBGE" >IBGE</a> | hospedado por <a href="https://www.mapbox.com/" title="MapBox" >MapBox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'; 	
 var mrgLayerMapnik = L.tileLayer.provider('OpenStreetMap.Mapnik').addTo(map);
-var mrgLayerMapBoxSat = L.tileLayer.provider('MapBox', {id: 'mapbox.streets-satellite',accessToken: 'pk.eyJ1IjoicHJvamV0b3JnbSIsImEiOiJqeVpremF3In0.SCxZ4ah9ZKxWcELgsKQyWA'});
+var mrgLayerMapBoxSat =  L.tileLayer.provider('Esri.WorldImagery').addTo(map); //fix-me to Esri
+//var mrgLayerMapBoxSat = L.tileLayer.provider('MapBox', {id: 'mapbox.streets-satellite',accessToken: 'pk.eyJ1IjoicHJvamV0b3JnbSIsImEiOiJqeVpremF3In0.SCxZ4ah9ZKxWcELgsKQyWA'});
 //var mrgLayerOpenTopoMap = L.tileLayer.provider('OpenTopoMap');
 var mrgLayerOpenTopoMap = L.tileLayer.provider('Thunderforest.MobileAtlas',{apikey: ThunderforestAPIKey});					
 
