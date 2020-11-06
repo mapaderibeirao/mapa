@@ -4,6 +4,8 @@ var ClusterOFF = false;
 var HeatOFF = false;
 var OvCountON = true;
 var OvCountOFF = false;
+var EnquadarOn  = true;
+var EnquadarOff = false;
 
 function BrowserIsPortuguese(){ 
     var Valor = false;

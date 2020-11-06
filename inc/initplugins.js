@@ -85,21 +85,9 @@ var mrgIconLayersControl = new L.control.iconLayers([
          layer: mrgLayerMapBoxSat, 
 		icon: mrgIconLayersDir + 'sat.jpg' 
         },
-        {title: mrgTxtImgL_Topo, 
-         layer: mrgLayerOpenTopoMap, 
-		icon: mrgIconLayersDir + 'topo.jpg' 
-        },
-        {title: mrgTxtImgL_Toner, 
-         layer: mrgLayerStamenToner, 
-		icon: mrgIconLayersDir + 'toner.jpg' 
-        },
-        {title: mrgTxtImgL_Cyc, 
-         layer: mrgLayerCycle, 
-		icon: mrgIconLayersDir + 'cycle.jpg' 
-        },
-        {title: mrgTxtImgL_Out, 
-         layer: mrgLayerOutdoors, 
-		icon: mrgIconLayersDir + 'out.jpg' 
+        {title: mrgTxtImgL_MBSt2, 
+         layer: mrgLayerEsriSat, 
+		icon: mrgIconLayersDir + 'satup.jpg' 
         },
         {title: mrgTxtImgL_IBGRr, 
          layer: mrgLayerIBGEr, 

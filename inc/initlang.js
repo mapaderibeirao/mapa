@@ -5,10 +5,7 @@ var mrgTxtAtribuicao = '<a href="http://bit.ly/2MEUbZB" title="MIT">Município d
 
 var mrgTxtImgL_MNK = 'Mapa';
 var mrgTxtImgL_MBSt = 'Satélite';
-var mrgTxtImgL_Topo = 'Topográfico';
-var mrgTxtImgL_Toner = 'Toner';
-var mrgTxtImgL_Cyc = 'Cycle';
-var mrgTxtImgL_Out = 'Outdoors';
+var mrgTxtImgL_MBSt2 = 'Satélite 2';
 var mrgTxtImgL_IBGRr = 'IBGE Rural';
 var mrgTxtImgL_IBGRu = 'IBGE Urbano';
 
