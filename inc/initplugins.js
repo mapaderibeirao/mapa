@@ -153,12 +153,6 @@ var mrgFunctionBtnCompare = function(){
 			case mrgLayerMapnik:		
 				 mrgTratamentSideBySideNormal(mrgActiveLayer);
 			break;
-			case mrgLayerCycle:		
-				 mrgTratamentSideBySideNormal(mrgActiveLayer);
-			break;
-			case mrgLayerOutdoors:		
-				 mrgTratamentSideBySideNormal(mrgActiveLayer);
-			break;
 			case mrgLayerMapBoxSat:									
 				 mrgLayerMapnik.addTo(map);
 				 mrgSideBySideControlFg = mrgLayerMapnik;
