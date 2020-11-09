@@ -158,6 +158,11 @@ var mrgFunctionBtnCompare = function(){
 				 mrgSideBySideControlFg = mrgLayerMapnik;
 				 mrgSideBySideControlBk = mrgLayerMapBoxSat;			
 			break;
+			case mrgLayerMapBoxSat2:									
+				 mrgLayerMapBoxSat.addTo(map);
+				 mrgSideBySideControlFg = mrgLayerMapBoxSat;
+				 mrgSideBySideControlBk = mrgLayerMapBoxSat2;			
+			break;
 			case mrgLayerIBGEr:						//Background será OSM!
 				 mrgTratamentSideBySideIBGE(mrgActiveLayer);
 			break;
