@@ -99,15 +99,21 @@ var mrgIconLayersControl = new L.control.iconLayers([
         }
     ], {
         position: 'bottomright',
-        maxLayersInRow: 9
+        maxLayersInRow: 2
     });	
 	 //Pega Layer atual	
 	 mrgIconLayersControl.on('activelayerchange', function(e) {
-	    mrgActiveLayer = e.layer;
+		var mrgActiveLayerBackup = mrgActiveLayer;
+	    mrgActiveLayer = e.layer; 
 		 if(mrgSideBySideActive){
-			mrgFunctionBtnCompareStop() //Não podemos permitir troca de layers durante modo de comparação			
+			mrgActiveLayer = mrgActiveLayerBackup; 
+			mrgFunctionBtnCompareStop() //Não podemos permitir troca de layers durante modo de comparação						
+			mrgIconLayersControl.setActiveLayer(mrgActiveLayer);
 	    }
 	 });	
+	 
+	 
+
 
 var mrgSideBySideControl = new L.control.sideBySide(mrgSideBySideControlFg, mrgSideBySideControlBk);	
 	
@@ -142,7 +148,7 @@ function mrgTratamentSideBySideIBGE(Camada){
 	 mrgSideBySideControlFg = Camada;
 	 mrgSideBySideControlBk = mrgLayerMapnik;	
 }
-function mrgTratamentSideBySideNormal(Camada){
+function mrgTratamentSideBySideNormal(Camada){ //deprecated
 	 mrgLayerMapBoxSat.addTo(map);
 	 mrgSideBySideControlFg = Camada;
 	 mrgSideBySideControlBk = mrgLayerMapBoxSat;
@@ -155,13 +161,13 @@ var mrgFunctionBtnCompare = function(){
 			break;
 			case mrgLayerMapBoxSat:									
 				 mrgLayerMapnik.addTo(map);
-				 mrgSideBySideControlFg = mrgLayerMapnik;
-				 mrgSideBySideControlBk = mrgLayerMapBoxSat;			
+				 mrgSideBySideControlFg = mrgLayerMapBoxSat;
+				 mrgSideBySideControlBk = mrgLayerMapnik;			
 			break;
 			case mrgLayerEsriSat:									
 				 mrgLayerMapBoxSat.addTo(map);
-				 mrgSideBySideControlFg = mrgLayerMapBoxSat;
-				 mrgSideBySideControlBk = mrgLayerEsriSat;			
+				 mrgSideBySideControlFg = mrgLayerEsriSat;
+				 mrgSideBySideControlBk = mrgLayerMapBoxSat;			
 			break;
 			case mrgLayerIBGEr:						//Background será OSM!
 				 mrgTratamentSideBySideIBGE(mrgActiveLayer);
@@ -170,12 +176,12 @@ var mrgFunctionBtnCompare = function(){
 				 mrgTratamentSideBySideIBGE(mrgActiveLayer);
 			break;
 			default:								//Se camada ativa não pode ser comparada então remove e aplica padrões
-				 map.removeLayer(mrgActiveLayer);  					
-				 mrgLayerMapnik.addTo(map);
-				 mrgLayerMapBoxSat.addTo(map);
-				 mrgActiveLayer = mrgLayerMapnik;
-				 mrgSideBySideControlFg = mrgLayerMapnik;
-				 mrgSideBySideControlBk = mrgLayerMapBoxSat;
+				// map.removeLayer(mrgActiveLayer);  					
+				// mrgLayerMapnik.addTo(map);
+				// mrgLayerMapBoxSat.addTo(map);
+				// mrgActiveLayer = mrgLayerMapnik;
+				// mrgSideBySideControlFg = mrgLayerMapnik;
+				// mrgSideBySideControlBk = mrgLayerMapBoxSat;
 		}	
 		mrgSideBySideControl.addTo(map);
 		mrgSideBySideActive = true;     //marca que o modo de comparação (o controle) está habilitado
@@ -185,6 +191,7 @@ var mrgFunctionBtnCompareStop = function(){
 	map.removeLayer(mrgSideBySideControlBk);		//remove background
 	map.removeControl(mrgSideBySideControl);
 	mrgButtonCompare.state('mrg-init-compare');    
+	mrgSideBySideActive = false;
 }
 var mrgButtonCompare = L.easyButton({
     states: [{
