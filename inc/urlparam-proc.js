@@ -42,7 +42,8 @@ if (mrgCamadaDeDados !=null){
 		mrgAddDataOverlay('rtcma','rtcma','RT Cavernas da Mata Atlântica','map-marked-alt','map-marked-alt',!(ForceSilentAddOverlay),HeatOFF,ClusterOFF,OvCountOFF); 
 	break; 
 	case 'coronavirus'		   : 
-		window.location.href = "https://bit.ly/coronavirusrg";   
+		//https://bit.ly/coronavirusrg		   
+		window.location.href = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSfNvNkavHBKy9F5hHgZgwik2cR72uMDvMm_4lTbKRya8565nmss3iznQ3Nnu5W6nI6fM_VOsNrAAB7/pubhtml?gid=773624526&single=true";   
 		//mrgAddDataOverlay('covid19','confirmados','CONFIRMADOS','virus','virus',false,HeatON,ClusterON,OvCountON); 
 		  //mrgAddDataOverlay('covid19','curados','CURADOS','hand-sparkles','hand-sparkles',false,HeatON,ClusterON,OvCountON); 
 		  //mrgAddDataOverlay('covid19','suspeitos','SUSPEITOS','exclamation-triangle','exclamation-triangle',false,HeatOFF,ClusterON,OvCountON); 
