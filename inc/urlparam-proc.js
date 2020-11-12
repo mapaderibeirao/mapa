@@ -46,7 +46,7 @@ if (mrgCamadaDeDados !=null){
 		//mrgAddDataOverlay('covid19','confirmados','CONFIRMADOS','virus','virus',false,HeatON,ClusterON,OvCountON); 
 		  //mrgAddDataOverlay('covid19','curados','CURADOS','hand-sparkles','hand-sparkles',false,HeatON,ClusterON,OvCountON); 
 		  //mrgAddDataOverlay('covid19','suspeitos','SUSPEITOS','exclamation-triangle','exclamation-triangle',false,HeatOFF,ClusterON,OvCountON); 
-		/mrgAtribuicao.addAttribution("(Desatualizado) - Departamento de Saúde - Prefeitura Municipal");
+		//mrgAtribuicao.addAttribution("(Desatualizado) - Departamento de Saúde - Prefeitura Municipal");
 	break; 		   
     default                        : OK = false;
    }
