@@ -20,8 +20,9 @@ if (mrgMarkerLatLonByURL !=null){
 //INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,Heat,Cluster)
 //Os parâmetros podem ser passados de forma mais estruturada... verificar depois
 
-
-mrgAddDataOverlay('global','perimetro-rg','Limites Adm',null,'vector-square',!(ForceSilentAddOverlay),HeatOFF,ClusterOFF,OvCountOFF); 
+//INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,Heat,Cluster)
+mrgAddDataOverlay('global','perimetro-rg','Fronteiras',null,'vector-square',!(ForceSilentAddOverlay),HeatOFF,ClusterOFF,OvCountOFF); 
+mrgAddDataOverlay('global','vias','Ruas','road','road',!(ForceSilentAddOverlay),HeatOFF,ClusterON,OvCountOFF); 
 
 
 if (mrgCamadaDeDados !=null){ 
@@ -42,12 +43,7 @@ if (mrgCamadaDeDados !=null){
 		mrgAddDataOverlay('rtcma','rtcma','RT Cavernas da Mata Atlântica','map-marked-alt','map-marked-alt',!(ForceSilentAddOverlay),HeatOFF,ClusterOFF,OvCountOFF); 
 	break; 
 	case 'coronavirus'		   : 
-		//https://bit.ly/coronavirusrg		   
 		window.location.href = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSfNvNkavHBKy9F5hHgZgwik2cR72uMDvMm_4lTbKRya8565nmss3iznQ3Nnu5W6nI6fM_VOsNrAAB7/pubhtml?gid=773624526&single=true";   
-		//mrgAddDataOverlay('covid19','confirmados','CONFIRMADOS','virus','virus',false,HeatON,ClusterON,OvCountON); 
-		  //mrgAddDataOverlay('covid19','curados','CURADOS','hand-sparkles','hand-sparkles',false,HeatON,ClusterON,OvCountON); 
-		  //mrgAddDataOverlay('covid19','suspeitos','SUSPEITOS','exclamation-triangle','exclamation-triangle',false,HeatOFF,ClusterON,OvCountON); 
-		//mrgAtribuicao.addAttribution("(Desatualizado) - Departamento de Saúde - Prefeitura Municipal");
 	break; 		   
     default                        : OK = false;
    }

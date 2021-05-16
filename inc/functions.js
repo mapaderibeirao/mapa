@@ -211,8 +211,8 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
 			 var URLchegar = "";
 			 if(IsMarker){ 
 				var URLchegar = HrefFromURLPlus(
-								//GetLinkGraphhopper(LatLon.lat,LatLon.lng), "",mrgTxtGraphhpr,"<br><span class='fas fa-directions'></span> como chegar","_blank"
-								mrgURLBoletimCOVID, "","FIQUE EM CASA","<br><span class='fas fa-heart'></span> fique em casa.","_parent"
+								GetLinkGraphhopper(LatLon.lat,LatLon.lng), "",mrgTxtGraphhpr,"<br><span class='fas fa-directions'></span> como chegar","_blank"
+								//mrgURLBoletimCOVID, "","FIQUE EM CASA","<br><span class='fas fa-heart'></span> fique em casa.","_parent"
 								);
 			 };
 
@@ -223,21 +223,25 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
     .on('ready', function() {
 		var TextoTemp = "";
 		if(ContarItens){ TextoTemp = ContM + " "; };
-		
-		mrgControlLayers.addOverlay(olTemp, '<span class="fas fa-'+  IconMini  +'"> <span class="mrg-ovlayer-'+Arquivo+ '">'+ TextoTemp + Apelido + '</span>');   
+	
+		//mrgControlLayers.addOverlay(olTemp, '<span class="fas fa-'+  IconMini  +'"> <span class="mrg-ovlayer-'+Arquivo+ '">'+ TextoTemp + Apelido + '</span>');   
 		if(!mrgControlLayersShow){
 			$('.leaflet-control-layers').show();
 			mrgButtonDadosExit.addTo(map);
 		}
 		mrgOverlaysArray.push(olTemp); //Registra overlay para poder remover depois					
 		//Se usar Cluster, não precisa por no mapa de novo
+		//subgCluster foi criada em initmap.js
 		if (AddCluster){			
-			mrgCluster.addLayer(olTemp); //dev
-			mrgMapHasCluster = true;
+			//mrgCluster.addLayer(olTemp); //dev
+			subgCluster.addLayer(olTemp);
+			mrgMapHasCluster = true;			
+			mrgControlLayers.addOverlay(subgCluster, '<span class="fas fa-'+  IconMini  +'"> <span class="mrg-ovlayer-'+Arquivo+ '">'+ TextoTemp + Apelido + '</span>');   
 		} else{
+			//SE NÃO USAR CLUSTER, JOGA CAMADA NORMALMENTE NO MAPA
+			mrgControlLayers.addOverlay(olTemp, '<span class="fas fa-'+  IconMini  +'"> <span class="mrg-ovlayer-'+Arquivo+ '">'+ TextoTemp + Apelido + '</span>');   
 			map.addLayer(olTemp)	//dev
 		}
-//		map.addLayer(olTemp);
 
         if(Enquadrar){map.fitBounds(olTemp.getBounds())};
     });

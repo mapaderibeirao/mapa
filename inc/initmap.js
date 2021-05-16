@@ -82,7 +82,9 @@ map.on('click', function(e) {
 });
 
 var mrgCluster = L.markerClusterGroup();
-map.addLayer(mrgCluster);
+map.addLayer(mrgCluster); 
+// Cria subgrupos
+var subgCluster = L.featureGroup.subGroup(mrgCluster).addTo(map);
 
 //Create an OverlappingMarkerSpiderfier instance:
 var mrgOverlappingMS = new OverlappingMarkerSpiderfier(map);
