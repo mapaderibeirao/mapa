@@ -3,8 +3,8 @@ var ForceSilentAddOverlay = false //Força para que overlayers sejam adicionadas
 //Se foi solicitado marcador no mapa
 
 if (mrgMarkerLatLonByURL !=null){ 	
+	ForceSilentAddOverlay = true; //Nesse caso desabilita para que seja focado no marcador em questão
 	if (!mrgMapOnClickAddLock){
-		ForceSilentAddOverlay = true; //Nesse caso desabilita para que seja focado no marcador em questão
 		mrgMapOnClickAddLock = true;
 		mrgUserTempMarker.setLatLng(mrgMarkerLatLonByURL);
 		map.setView(mrgMarkerLatLonByURL, 18); 		
@@ -21,6 +21,10 @@ if (mrgMarkerLatLonByURL !=null){
 //Os parâmetros podem ser passados de forma mais estruturada... verificar depois
 
 //INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,Heat,Cluster)
+mrgAddDataOverlay('global','perimetro-rg','Fronteiras',null,'vector-square',!(ForceSilentAddOverlay),HeatOFF,ClusterOFF,OvCountOFF); 
+mrgAddDataOverlay('global','vias','Ruas','road','road',false,HeatOFF,ClusterON,OvCountOFF); 
+
+
 if (mrgCamadaDeDados !=null){ 
    var OK = true; //DEV
    switch( mrgCamadaDeDados  ) {
@@ -43,9 +47,6 @@ if (mrgCamadaDeDados !=null){
 	break; 		   
     default                        : OK = false;
    }
-   
-mrgAddDataOverlay('global','perimetro-rg','Fronteiras',null,'vector-square',ForceSilentAddOverlay,HeatOFF,ClusterOFF,OvCountOFF); 
-mrgAddDataOverlay('global','vias','Ruas','road','road',ForceSilentAddOverlay,HeatOFF,ClusterON,OvCountOFF); 
-   
+      
    
 }
