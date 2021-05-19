@@ -21,7 +21,7 @@ if (mrgMarkerLatLonByURL !=null){
 //Os parâmetros podem ser passados de forma mais estruturada... verificar depois
 
 //INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,Heat,Cluster)
-mrgAddDataOverlay('global','perimetro-rg','Fronteiras',null,'vector-square',false,HeatOFF,ClusterOFF,OvCountOFF); 
+mrgAddDataOverlay('global','perimetro-rg','Fronteiras',null,'vector-square',true,HeatOFF,ClusterOFF,OvCountOFF); 
 mrgAddDataOverlay('global','vias','Ruas','road','road',false,HeatOFF,ClusterON,OvCountOFF); 
 
 
