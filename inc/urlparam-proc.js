@@ -22,7 +22,7 @@ if (mrgMarkerLatLonByURL !=null){
 
 //INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,Heat,Cluster)
 if (mrgCamadaDeDados !=null){ 
-   var OK = true;
+   var OK = true; //DEV
    switch( mrgCamadaDeDados  ) {
 	case 'paroquiabomjesus': 
 		mrgAddDataOverlay('paroquiabomjesus','extra','Extra','church',null,false,HeatOFF,ClusterOFF,OvCountOFF); 
@@ -36,7 +36,7 @@ if (mrgCamadaDeDados !=null){
 //		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed','bed',false,HeatOFF,ClusterOFF,OvCountOFF) 
 //	break; 
 	case 'rtcma'		   : 
-		mrgAddDataOverlay('rtcma','rtcma','RT Cavernas da Mata Atlântica','map-marked-alt','map-marked-alt',!(ForceSilentAddOverlay),HeatOFF,ClusterOFF,OvCountOFF); 
+		mrgAddDataOverlay('rtcma','rtcma','RT Cavernas da Mata Atlântica','map-marked-alt','map-marked-alt',true,HeatOFF,ClusterOFF,OvCountOFF); 
 	break; 
 	case 'coronavirus'		   : 
 		window.location.href = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSfNvNkavHBKy9F5hHgZgwik2cR72uMDvMm_4lTbKRya8565nmss3iznQ3Nnu5W6nI6fM_VOsNrAAB7/pubhtml?gid=773624526&single=true";   
@@ -44,8 +44,8 @@ if (mrgCamadaDeDados !=null){
     default                        : OK = false;
    }
    
-mrgAddDataOverlay('global','perimetro-rg','Fronteiras',null,'vector-square',!(ForceSilentAddOverlay),HeatOFF,ClusterOFF,OvCountOFF); 
-mrgAddDataOverlay('global','vias','Ruas','road','road',!(ForceSilentAddOverlay),HeatOFF,ClusterON,OvCountOFF); 
+mrgAddDataOverlay('global','perimetro-rg','Fronteiras',null,'vector-square',ForceSilentAddOverlay,HeatOFF,ClusterOFF,OvCountOFF); 
+mrgAddDataOverlay('global','vias','Ruas','road','road',ForceSilentAddOverlay,HeatOFF,ClusterON,OvCountOFF); 
    
    
 }
