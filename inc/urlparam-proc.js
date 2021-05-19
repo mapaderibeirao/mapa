@@ -21,10 +21,6 @@ if (mrgMarkerLatLonByURL !=null){
 //Os parâmetros podem ser passados de forma mais estruturada... verificar depois
 
 //INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,Heat,Cluster)
-mrgAddDataOverlay('global','perimetro-rg','Fronteiras',null,'vector-square',true,HeatOFF,ClusterOFF,OvCountOFF); 
-mrgAddDataOverlay('global','vias','Ruas','road','road',false,HeatOFF,ClusterON,OvCountOFF); 
-
-
 if (mrgCamadaDeDados !=null){ 
    var OK = true;
    switch( mrgCamadaDeDados  ) {
@@ -47,4 +43,9 @@ if (mrgCamadaDeDados !=null){
 	break; 		   
     default                        : OK = false;
    }
+   
+mrgAddDataOverlay('global','perimetro-rg','Fronteiras',null,'vector-square',!(ForceSilentAddOverlay),HeatOFF,ClusterOFF,OvCountOFF); 
+mrgAddDataOverlay('global','vias','Ruas','road','road',!(ForceSilentAddOverlay),HeatOFF,ClusterON,OvCountOFF); 
+   
+   
 }
