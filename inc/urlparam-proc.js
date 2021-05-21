@@ -33,12 +33,12 @@ if (mrgCamadaDeDados !=null){
 //		mrgAddDataOverlay('paroquiabomjesus','setores','Setores',null,'puzzle-piece',true,HeatOFF,ClusterOFF,OvCountOFF); 
 		mrgAddDataOverlay('paroquiabomjesus','paroquiabomjesus','Paróquia Bom Jesus','cross','church',false,HeatOFF,ClusterOFF,OvCountOFF) 
 	break; 
-//	case 'turismo'		   : 
-//		mrgAddDataOverlay('turismo','aeb','A & B','utensils','utensils',false,HeatOFF,ClusterOFF,OvCountOFF); 
-//		mrgAddDataOverlay('turismo','eventos','Eventos','calendar-alt','calendar-alt',false,HeatOFF,ClusterOFF,OvCountOFF); 
-//		mrgAddDataOverlay('turismo','atrativos','Atrativos','map-marked-alt','map-marked-alt',false,HeatOFF,ClusterOFF,OvCountOFF); 
-//		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed','bed',false,HeatOFF,ClusterOFF,OvCountOFF) 
-//	break; 
+	case 'turismo'		   : 
+		mrgAddDataOverlay('turismo','aeb','A & B','utensils','utensils',false,HeatOFF,ClusterOFF,OvCountOFF); 
+		mrgAddDataOverlay('turismo','eventos','Eventos','calendar-alt','calendar-alt',false,HeatOFF,ClusterOFF,OvCountOFF); 
+		mrgAddDataOverlay('turismo','atrativos','Atrativos','map-marked-alt','map-marked-alt',false,HeatOFF,ClusterOFF,OvCountOFF); 
+		mrgAddDataOverlay('turismo','hospedagem','Hospedagem','bed','bed',false,HeatOFF,ClusterOFF,OvCountOFF) 
+	break; 
 	case 'rtcma'		   : 
 		mrgAddDataOverlay('rtcma','rtcma','RT Cavernas da Mata Atlântica','map-marked-alt','map-marked-alt',true,HeatOFF,ClusterOFF,OvCountOFF); 
 	break; 
