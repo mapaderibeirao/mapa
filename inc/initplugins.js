@@ -84,18 +84,6 @@ var mrgIconLayersControl = new L.control.iconLayers([
         {title: mrgTxtImgL_MBSt, 
          layer: mrgLayerMapBoxSat, 
 		icon: mrgIconLayersDir + 'sat.jpg' 
-        },
-        {title: mrgTxtImgL_MBSt2, 
-         layer: mrgLayerEsriSat, 
-		icon: mrgIconLayersDir + 'satup.jpg' 
-        },
-        {title: mrgTxtImgL_IBGRr, 
-         layer: mrgLayerIBGEr, 
-		icon: mrgIconLayersDir + 'ibger.jpg' 
-        },
-        {title: mrgTxtImgL_IBGRu, 
-         layer: mrgLayerIBGEu, 
-		icon: mrgIconLayersDir + 'ibgeu.jpg' 
         }
     ], {
         position: 'bottomright',
@@ -121,13 +109,17 @@ var mrgFunctionBtnCOVID = function(){$(location).attr('href', 'https://mapaderib
 var mrgButtonCOVID = L.easyButton('fa-notes-medical fa-lg mrg-fg-blue',mrgFunctionBtnCOVID,'CORONAVÍRUS - BOLETINS',map); 
 mrgButtonCOVID.options.position =    'topright';	
 	
-var mrgFunctionBtnHome = function(){$(location).attr('href', 'https://mapaderibeiraograndesp.wordpress.com')}
-var mrgButtonHome = L.easyButton('fa-info fa-lg',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
-mrgButtonHome.options.position =    'bottomleft';
+
+	
+var mrgFunctionBtnHome = function(){
+	$(location).attr('href', '../index.html')
+};
+var mrgButtonHome = L.easyButton('fa-home fa-lg mrg-fg-blue',mrgFunctionBtnHome,mrgTxtButtonHome,map); 
+mrgButtonHome.options.position =    'topleft';
 
 var mrgFunctionBtnApp = function(){$(location).attr('href', 'https://wp.me/p8DR6g-rr')}
-var mrgButtonApp = L.easyButton('fa-mobile-alt fa-lg',mrgFunctionBtnApp,mrgTxtButtonApp,map); 
-mrgButtonApp.options.position =    'bottomleft';
+var mrgButtonApp = L.easyButton('fa-download fa-lg mrg-fg-blue',mrgFunctionBtnApp,mrgTxtButtonApp,map); 
+mrgButtonApp.options.position =    'topleft';
 
 function mrgClearOverlays(Layer, index, array) {
 	Layer.removeFrom(map);
@@ -239,20 +231,19 @@ mrgBtnEscalaLateral.options.position =    'topright';
 
 function mrgAddPlugins(){
 	mrgControlLayers.addTo(map);
-	mrgEasyPrint.addTo(map);
+	//mrgEasyPrint.addTo(map);
 	mrgControlLocate.addTo(map);
 	mrgGraphicScale.addTo(map); 
 	mrgControlGeocoder.addTo(map);
 	mrgControlPolylineMeasure.addTo(map); 
 	mrgIconLayersControl.addTo(map);
-	mrgButtonHome.addTo(map);
-	mrgButtonApp.addTo(map);
+	//mrgButtonHome.addTo(map);
+	//mrgButtonApp.addTo(map);
 	mrgButtonCompare.addTo(map);
-	mrgBtnEscalaLateral.addTo(map);
-	mrgButtonCOVID.addTo(map);
+	//mrgBtnEscalaLateral.addTo(map);
+	//mrgButtonCOVID.addTo(map);
 	$('.leaflet-control-layers').hide();
 }
 
 // Por fim, adiciona os plugins para começar o mapa
 mrgAddPlugins();
-	

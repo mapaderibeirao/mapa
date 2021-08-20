@@ -31,6 +31,7 @@ var mrgSideBySideControlFg = mrgLayerMapnik; //Layer inicial
 var mrgSideBySideControlBk = mrgLayerMapBoxSat; //Layer inicial
 var mrgSideBySideActive = false;
 var mrgURLBaseMapasGEOJSON = 'https://raw.githubusercontent.com/mapaderibeirao/mapas/master/';
+var mrgBaseDir = GetCurrentDir();
 
 //Marcador que aparece ao clicar no mapa
 var mrgUserTempMarker = L.marker([],{
@@ -39,7 +40,7 @@ var mrgUserTempMarker = L.marker([],{
 												
 //Inicia marcador temporário - Mostra coordenadas quando clicar em alguma parte do mapa
 function TempMarkerMsg(Lat,Lon,Zoom){
-  var Opcoes = GerarOpcoesDoMapa(Lat,Lon,Zoom,'/mapa/');
+  var Opcoes = GerarOpcoesDoMapa(Lat,Lon,Zoom,mrgBaseDir);
   var Msg = "<div class='mrg-display-latlon'><span class='mrg-fg-blue fas fa-map-marker-alt'></span> "+ mrgTxtMarkerCoord +": <span class='mrg-display-latlon'>"
           + Lat+',<br> '+ Lon + '</span>'
 	  + '</div>'
@@ -98,3 +99,22 @@ var mrgHeatMap = L.heatLayer([
 	blur: 80});
 
 mrgHeatMap.addTo(map);
+
+
+
+	// control that shows state info on hover
+	var info = L.control();
+
+	info.onAdd = function (map) {
+		this._div = L.DomUtil.create('div', 'info');
+		this.update();
+		return this._div;
+	};
+
+	info.update = function (props) {
+		this._div.innerHTML = '<h4>Mapa de Ribeirão Grande</h4>' 
+		+   CriarBotao(HrefFromURLPlus("sobre/",     "fas fa-info-circle mrg-button-md","Saiba mais"," <span class='mrg-fg-white'>Sobre</span>",''))
+		+   CriarBotao(HrefFromURLPlus("gps/",     "fas fa-download mrg-button-md","Baixe o aplicativo"," <span class='mrg-fg-white'>Baixe o aplicativo</span>",''))
+	};
+
+	info.addTo(map);

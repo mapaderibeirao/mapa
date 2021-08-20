@@ -6,7 +6,7 @@ var OvCountON = true;
 var OvCountOFF = false;
 var EnquadarOn  = true;
 var EnquadarOff = false;
-
+var OvExibirOn = true;
 function BrowserIsPortuguese(){ 
     var Valor = false;
 	var userLang = navigator.language || navigator.userLanguage;
@@ -14,6 +14,12 @@ function BrowserIsPortuguese(){
 	return Valor
 }
 
+function GetCurrentDir(){
+	var loc = window.location.pathname;
+	var dir = loc.substring(0, loc.lastIndexOf('/'));	
+	dir = dir + '/'
+	return dir;
+}
 
 function HrefFromURL(Link,Titulo,Conteudo) {
 	FullLink = HrefFromURLPlus(Link,Titulo,Conteudo,"");
@@ -70,9 +76,10 @@ function LinkDoMapa(Lat,Lon,Zoom,Dir,Param){
    if (Param != null) {
    	Adicional = Param
    };
-	var Host = "http://"+window.location.hostname;
-	var PreLink = Host + Dir + '#' + Zoom + '/' + Lat + '/' + Lon 
-	            + '&mlat=' + Lat + '&mlon=' + Lon + Adicional;
+	//var Host = "http://"+window.location.hostname;
+	//var PreLink = Host + Dir + '#' + Zoom + '/' + Lat + '/' + Lon 
+	var PreLink = Dir + '#' + Zoom + '/' + Lat + '/' + Lon 
+	            + '&m=' + Lat + ',' + Lon + Adicional;
 	var Link    = HrefFromURLPlus(PreLink,"fas fa-external-link-square-alt mrg-button",mrgTxtPermalink,"","");	
 	return Link;
 }
@@ -169,7 +176,7 @@ function BuscarIcone(PropIcon,ColorIcon){
 //		plugin omnivore
 //INFO: mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,Heat,Cluster)
 //Os parâmetros podem ser passados de forma mais estruturada... verificar depois
-function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,AddHeat,AddCluster,ContarItens){
+function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,AddHeat,AddCluster,ContarItens,Exibir){
 	var ContM = 0;
     var ResultTemp = [];
 	var olTemp = omnivore.geojson(mrgURLBaseMapasGEOJSON + Pasta + '/' + Arquivo +'.geojson'); //Sempre vai estar contido em uma pasta com o mesmo nome do arquivo
@@ -183,7 +190,7 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
 			 //Aqui trata da formatação de cada elemento. Se for marcador, define ícone. Do contrário, trata como polígono.
 			 if(IsMarker){
 				ContM = ContM + 1; 
-				var LatLon = marker.getLatLng();				 
+				var LatLon = marker.getLatLng;				 
 				if (typeof Propriedades.icon !== 'undefined') {	//verifica se existe ícone para alterar
 					var PosBusca = BuscarIcone(Propriedades.icon,Propriedades.color); 
 				}else{
@@ -237,10 +244,15 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
 			subgCluster.addLayer(olTemp);
 			mrgMapHasCluster = true;			
 			mrgControlLayers.addOverlay(subgCluster, '<span class="fas fa-'+  IconMini  +'"> <span class="mrg-ovlayer-'+Arquivo+ '">'+ TextoTemp + Apelido + '</span>');   
+			if(!Exibir){ 
+				//DEV
+			};
+
 		} else{
 			//SE NÃO USAR CLUSTER, JOGA CAMADA NORMALMENTE NO MAPA
 			mrgControlLayers.addOverlay(olTemp, '<span class="fas fa-'+  IconMini  +'"> <span class="mrg-ovlayer-'+Arquivo+ '">'+ TextoTemp + Apelido + '</span>');   
 			map.addLayer(olTemp)	//dev
+			if(!Exibir){map.removeLayer(olTemp)};
 		}
 
         if(Enquadrar){map.fitBounds(olTemp.getBounds())};

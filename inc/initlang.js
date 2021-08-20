@@ -31,7 +31,7 @@ var mrgTxtEasyPrintA4l = 'A4, paisagem, hor.';
 
 var mrgTxtControlLocate = 'Centralizar mapa na sua localização';
 
-var mrgTxtButtonHome = 'Saiba mais';
+var mrgTxtButtonHome = 'Início';
 var mrgTxtButtonApp = 'Gostou deste mapa? Baixe em seu celular!';
 var mrgTxtButtonDadosE = 'Limpar a camada de dados';
 
@@ -90,7 +90,7 @@ if(!mrgBrowserIsPortuguese){
 
 	mrgTxtControlLocate	= "Show me where I am!"
 
-	mrgTxtButtonHome = 'About...';
+	mrgTxtButtonHome = 'Home';
 	mrgTxtButtonApp = 'Did you like this map? Download on your mobile!';
 	mrgTxtButtonDadosE = 'Clear layer data';
 

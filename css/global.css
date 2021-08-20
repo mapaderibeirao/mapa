@@ -1,0 +1,34 @@
+.navbar .nav-link {
+color: #fff !important;
+} 
+
+
+.texto-sombra{
+text-shadow: 1px 1px 4px black;    
+}
+
+.redimensionar-100{width :100%;}
+.redimensionar-75 {width :75%;}
+.redimensionar-50 {width :50%;}
+
+.bg-body{
+  height: 100%; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */ 
+  background-attachment: fixed;    		
+}
+
+.bg-home{
+  background-image: linear-gradient(black, white, white, white);
+}
+.bg-busca{
+  background-image: url("../img/bg-busca.jpg");
+}
+.bg-sobre{
+  background-image: url("../img/bg-sobre.jpg");
+}
+
+.text-justify {
+  text-align: justify;
+}

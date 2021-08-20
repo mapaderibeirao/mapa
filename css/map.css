@@ -2,11 +2,15 @@ body {
     padding: 0;
     margin: 0;
 }
-html, body, #mapdiv {
+html, body{
     height: 100%;
     width: 100vw;
-}
+} 
 
+#mapdiv {
+    height: 100vh;
+    width: 100vw;
+}
 
 .mrg-floatstop{
 	clear:both;
@@ -23,7 +27,9 @@ html, body, #mapdiv {
 .mrg-fg-green{color: #4CAF50;}
 .mrg-fg-blue{color: #2a7fff;}
 .mrg-fg-red{color: #ff2a2a;}
+.mrg-fg-white{color: white;}
 
+.mrg-bg-blue{background-color: #2a7fff;}
 
 .leaflet-control-locate {
   border:1px solid rgba(0,0,0,0.4);
@@ -58,7 +64,7 @@ html, body, #mapdiv {
 
 .mrg-button {
 	font-size: 24px;
-	background-color: #4CAF50; /* Green */
+	background-color: #2a7fff;
 	border: none;
 	margin: 2px 1px;
 	color: white;
@@ -69,16 +75,50 @@ html, body, #mapdiv {
 	float: left;
 }
 
-.mrg-button:hover {
-  background-color: #3e8e41;
-  -webkit-transition-duration: 0.4s; /* Safari */
+.mrg-button-md {
+	font-size: 16px;
+	background-color: #2a7fff;
+	border: none;
+	margin: 2px 1px;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;	
+	border-radius: 2px;
+	float: left;
 }
-.mrg-button a:link, a:visited {
+.mrg-button-md a, a:link, a:visited {
   padding: 6px 6px;
   color: white;
 }
 
+
+.mrg-button:hover {
+  background-color: #2affff;
+  -webkit-transition-duration: 0.4s; /* Safari */
+}
+.mrg-button  a:link, a:visited {
+  padding: 6px 6px;
+  color: white;
+}
+
+
 .mrg-display-latlon{
 	font-size: 16px;
 	font-family: Arial;
+}
+
+.button-extra{
+	height: 100px !important; width: 100px !important; 
+}
+
+.info { 
+ padding: 6px 8px;
+ font: 14px/16px Arial, Helvetica, sans-serif;
+ background: white;
+ background: rgba(255,255,255,0.8);
+ box-shadow: 0 0 15px rgba(0,0,0,0.2);
+ border-radius: 5px;
+ } .info h4 { margin: 0 0 5px;
+ color: #2a7fff;
 }

@@ -1,0 +1,238 @@
+<!-- Projeto Mapa de Ribeirão Grande SP
+projetorgmsp@gmail.com
+Copyright (c) Edil Queiroz de Araujo
+MIT License
+Projeto Desde 2012
+Aplicativo Desde 2017
+-->
+<DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:url" content="https://mapaderibeirao.github.io/mapa/">
+	<meta property="og:title" content="Baixe o mapa de Ribeirão Grande no seu Celular">
+	<meta property="og:site_name" content="Mapa de Ribeirão Grande - SP">
+	<meta property="og:description" content="Baixe o mapa de Ribeirão Grande e região no seu celular e use como GPS.">
+	<meta property="og:image" content="https://mapaderibeirao.github.io/mapa/img/screenshot-gps.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta property="og:image:width" content="1280"> 
+	<meta property="og:image:height" content="720"> 
+	<meta property="og:type" content="website">
+	
+	<meta name="description" content="Baixe o mapa de Ribeirão Grande e região no seu celular e use como GPS.">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+	
+    <meta name="author" content="Edil Queiroz de Araujo" >
+    
+    <title>Baixe o mapa de Ribeirão Grande no seu Celular</title>
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+
+    <script type="text/javascript" src="../inc/jquery.min.js"></script>	
+
+    <!-- MDB -->
+    <script type="text/javascript" src="../mdb/js/mdb.min.js"></script>
+    <link rel="stylesheet" href="../mdb/css/mdb.min.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+	
+    <script type="text/javascript" src="../inc/slider.js"></script>
+    <script type="text/javascript" src="../inc/animatescroll.min.js"></script>
+    <script type="text/javascript" src="../inc/scroll.js"></script>
+	<link rel="shortcut icon" href="../img/favicon.png" />	
+</head>
+
+<body class="bg-home">
+   <!--Main Navigation-->
+  <header>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-sm navbar-dark d-lg-none d-xl-block texto-sombra" style="z-index: 2000;">
+		  <div class="container-fluid">
+			<!-- Navbar brand -->
+			<a class="navbar-brand nav-link"  href="../">
+			   <strong>Mapa de Ribeirão Grande</strong>
+			</a> 
+			<button class="navbar-toggler text-white" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarInicial"
+			  aria-controls="navbarInicial" aria-expanded="false" aria-label="Toggle navigation">
+			  <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarInicial">
+			  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+				  <a class="nav-link" href="../" rel="nofollow">
+				  <i class="fas fa-map-marked-alt"></i>  Voltar ao mapa</a> 
+				</li>
+				<li class="nav-item"> 
+				  <a class="nav-link" href="#!">
+				  <i class="fas fa-download"></i> Baixar aplicativo</a> 
+				</li>
+				<li class="nav-item"> 
+				  <a class="nav-link" href="../busca/">
+				  <i class="fas fa-search"></i> Catálogo</a> 
+				</li>
+			  </ul>
+
+			  <ul class="navbar-nav list-inline">
+				<!-- Icons -->
+				<li class="">
+				  <a class="nav-link" href="../sobre/" rel="nofollow">
+					<i class="fas fa-info-circle"></i> Sobre
+				  </a> 
+				</li>
+			  </ul>
+			</div>
+		  </div>
+		</nav>
+		<!-- Navbar -->
+	
+    <!-- Carousel wrapper -->
+    <div id="introCarousel" class="carousel slide carousel-fade shadow-2-strong" data-mdb-ride="carousel" data-interval="1200">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-mdb-target="#introCarousel" data-mdb-slide-to="0" class="active"></li>
+        <li data-mdb-target="#introCarousel" data-mdb-slide-to="1"></li>
+        <li data-mdb-target="#introCarousel" data-mdb-slide-to="2"></li>
+      </ol>
+
+      <!-- Inner -->
+      <div class="carousel-inner">
+        <!-- Single item -->
+        <div class="carousel-item active">
+          <div class="mask" style="background-color: rgba(0, 0, 0, 0.2);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <div class="text-white text-center">
+			    
+                <h5 class="mb-4">Leve o mapa de Ribeirão Grande e região em suas mãos.</h5>
+				<button class="btn btn-outline-light btn-lg m-2" onclick="rolarPg('rolar-pagina-final');">Baixe agora</button>  
+              </div>	 			  			  
+            </div>
+          </div>
+        </div>
+
+        <!-- Single item -->
+        <div class="carousel-item">
+          <div class="mask" style="background-color: rgba(0, 0, 0, 0.5);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <div class="text-white text-center">
+                <h5 class="mb-4">Não precisa de internet. Nem de sinal de celular.</h5>
+				<button class="btn btn-outline-light btn-lg m-2" onclick="$('.rolar-pagina-final').animatescroll({scrollSpeed:2000,easing:'easeInOutBack'});">Baixe agora</button>  
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single item -->
+        <div class="carousel-item">
+          <div class="mask" style="background-color: rgba(0, 0, 0, 0.4);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <div class="text-white text-center texto-sombra">
+                <h5 class="mb-4">Um GPS que chega em todos os lugares.</h5>
+				<button class="btn btn-outline-light btn-lg m-2" onclick="$('.rolar-pagina-final').animatescroll({scrollSpeed:2000,easing:'easeInOutBack'});">Baixe agora</button>  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Inner -->
+
+      <!-- Controls -->
+      <a class="carousel-control-prev" href="#introCarousel" role="button" data-mdb-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Anterior</span>
+      </a>
+      <a class="carousel-control-next" href="#introCarousel" role="button" data-mdb-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Próximo</span>
+      </a>
+    </div>
+    <!-- Carousel wrapper -->
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="mt-5 bg-white">
+    <div class="container">
+
+      <section class="text-center">
+        <h4 class="mb-5  display-4"><strong>Um Mapa de Qualidade Para Você</strong></h4>
+
+        <div class="row rolar-pagina-final">
+          <div class="col-lg-4 col-md-12 mb-4">
+            <div class="card">
+              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <img src="../img/fundo-item-gps-1.jpg" class="img-fluid" />
+                <a href="https://forms.gle/beRJmhCsmyMqy4Bq9" target="_blank">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Você sabia?</h5>
+				<p class="text-muted">
+					Cada vez mais presente: Facebook, instagram, justiça leitoral e muitos outros sites e serviços estão usando.
+				</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <img src="../img/fundo-item-gps-2.jpg" class="img-fluid" />
+                <a href="noticias/curso-atendimento-ao-turista.html">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Atualizado</h5>
+				<p class="text-muted">
+					Acompanha as mudanças da cidade. As mudanças no mapa atualizam todos os mapas e serviços que usam essa tecnologia.
+				</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <img src="../img/fundo-item-gps-3.jpg" class="img-fluid" />
+                <a href="votetop.html">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </a>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Baixe Agora Mesmo!</h5>
+				<p class="fst-italic fw-bold"><i class="fas fa-exclamation-circle text-warning"></i>  Importante: Em seguida, abra o app e baixe o mapa de seua região!
+				</p>
+                <a target="_blank" href="https://play.google.com/store/apps/details?id=net.osmand" class="btn btn-lg btn-primary">Para Android</a>
+                <a target="_blank" href="https://itunes.apple.com/app/apple-store/id934850257" class="btn btn-lg btn-primary">Para iOS</a>
+              </div>
+            </div>
+          </div>		  
+        </div>
+		
+      </section>
+      <!--Section: Content-->
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="bg-light text-lg-start">
+		<!-- Copyright -->
+		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+		  © Desde 2012 - 
+		  <a class="" target="_blank" href="https://www.instagram.com/edilqueirozdearaujo">Edil Queiroz de Araujo</a> - 
+		  <a class="" target="_blank" href="https://mapaderibeiraograndesp.wordpress.com/">Projeto Mapa de Ribeirão Grande </a>
+		| <a class="" target="_blank" href="https://ribeiraogrande.sp.gov.br/">Departamento de Turismo e Cultura</a> - Município de Interesse Turístico de Ribeirão Grande
+		</div>
+		<!-- Copyright -->
+  </footer>
+  <!--Footer-->
+
+</body>
+</html>
