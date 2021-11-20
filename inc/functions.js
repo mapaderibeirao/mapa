@@ -181,7 +181,7 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
     var ResultTemp = [];
 	var olTemp = omnivore.geojson(mrgURLBaseMapasGEOJSON + Pasta + '/' + Arquivo +'.geojson'); //Sempre vai estar contido em uma pasta com o mesmo nome do arquivo
     olTemp.on('layeradd', function(e) {
-			 var IsMarker = true;
+			 var IsMarker = false;
 			 var Imagem = "";
              var marker = e.layer;
 			 var Propriedades = marker.feature.properties;
@@ -223,9 +223,9 @@ function mrgAddDataOverlay(Pasta,Arquivo,Apelido,IconDefault,IconMini,Enquadrar,
 								);
 			 };
 
-			 var Conteudo = '<b>'+Propriedades.name +'</b><br>'+ Imagem + Propriedades.description + URLchegar;
-			 marker.autoPan = true;
-			 marker.bindPopup(Conteudo,{maxWidth: 160, maxHeight: 300})
+			//  var Conteudo = '<b>'+Propriedades.name +'</b><br>'+ Imagem + Propriedades.description + URLchegar;
+			//  marker.autoPan = true;
+			//  marker.bindPopup(Conteudo,{maxWidth: 160, maxHeight: 300})
     })
     .on('ready', function() {
 		var TextoTemp = "";
