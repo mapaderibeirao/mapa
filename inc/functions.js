@@ -49,12 +49,12 @@ function GetLinkGraphhopper(Lat,Lon) {
 	var Link = "https://graphhopper.com/maps/?point=-24.094456588117055%2C-48.364450335502625&point=" + Lat + "%2C" + Lon + "&locale=pt-BR&vehicle=car&weighting=fastest&elevation=true&use_miles=false&layer=OpenStreetMap";
 	return Link;
 }
-function GetLinkMapillary(Lat,Lon,Zoom) {
-	var Link = "http://www.mapillary.com/map/search/" + Lat + "/" + Lon + "/" + Zoom;
+function GetLinkStreetview(Lat,Lon,Zoom) {
+	var Link = "https://www.google.com/maps/@" + Lat + "," + Lon + "," + Zoom + "z";
 	return Link;
 }
-function GetLinkF4Map(Lat,Lon,Zoom) {
-	var Link = "http://demo.f4map.com/#lat=" + Lat + "&lon=" + Lon + "&zoom="+ Zoom + "&camera.theta=58.465";
+function GetLinkGoogleMaps(Lat,Lon,Zoom) {
+	var Link = "https://www.google.com/maps/@" + Lat + "," + Lon + "," + Zoom + "z";
 	return Link;
 }
 function GetLinkOSMe(Lat,Lon) {
@@ -92,15 +92,15 @@ function CriarBotao(Link){
 function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	var LinksAlvo = "_blank";
 	var PreLinkGraphhpr  = GetLinkGraphhopper(Lat,Lon); 
-	var PreLinkMapillary = GetLinkMapillary(Lat,Lon,Zoom);
-	var PreLinkF4Map     = GetLinkF4Map(Lat,Lon,Zoom);
+	var PreLinkStreetview = GetLinkStreetview(Lat,Lon,Zoom);
+	var PreLinkGoogleMaps     = GetLinkGoogleMaps(Lat,Lon,Zoom);
 	var PreLinkOSMe      = GetLinkOSMe(Lat,Lon,Zoom);
 	var PreLinkOSMd      = GetLinkOSMd(Lat,Lon,Zoom);
 	
 	var LinkRoute   	= HrefFromURLPlus("#",     "fas fa-map-pin mrg-button",mrgTxtGraphhpr,"",LinksAlvo);
 	var LinkGraphhpr  = HrefFromURLPlus(PreLinkGraphhpr,     "fas fa-directions mrg-button",mrgTxtGraphhpr,"",LinksAlvo);
-	var LinkMapillary = HrefFromURLPlus(PreLinkMapillary,"fas fa-street-view mrg-button",mrgTxtMapillary,"",LinksAlvo);
-	var LinkF4Map     = HrefFromURLPlus(PreLinkF4Map,    "fas fa-cube mrg-button",mrgTxtF4Map,"",LinksAlvo);
+	var LinkStreetview = HrefFromURLPlus(PreLinkStreetview,"fas fa-street-view mrg-button",mrgTxtStreetview,"",LinksAlvo);
+	var LinkGoogleMaps     = HrefFromURLPlus(PreLinkGoogleMaps,    "fas fa-map mrg-button",mrgTxtGoogleMaps,"",LinksAlvo);
 	var LinkOSMe      = HrefFromURLPlus(PreLinkOSMe,     "fas fa-pen-square  mrg-button",mrgTxtOSMe,"",LinksAlvo);
 	var LinkOSMd      = HrefFromURLPlus(PreLinkOSMd,     "fas fa-search-plus mrg-button",mrgTxtOSMd,"",LinksAlvo);
 
@@ -116,8 +116,8 @@ function GerarOpcoesDoMapa(Lat,Lon,Zoom,Dir) {
 	LinksLegenda = "<div class='mrg-button-group'>"
 					 + CriarBotao(LinkParaMapa)
 					 + CriarBotao(LinkGraphhpr)
-					 + CriarBotao(LinkMapillary)
-					 + CriarBotao(LinkF4Map)
+					 + CriarBotao(LinkStreetview)
+					 + CriarBotao(LinkGoogleMaps)
 					 + CriarBotao(LinkOSMe)
 					 + CriarBotao(LinkOSMd)
 					 + CriarBotao(LinkNote)
