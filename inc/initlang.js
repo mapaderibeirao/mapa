@@ -12,8 +12,8 @@ var mrgTxtImgL_IBGRu = 'IBGE Urbano';
 var mrgTxtMarkerCoord = 'Coordenadas';
 
 var mrgTxtGraphhpr  = 'Como chegar';
-var mrgTxtMapillary = 'Fotos/streetview';
-var mrgTxtF4Map     = '3D';
+var mrgTxtStreetview = 'Fotos/streetview';
+var mrgTxtGoogleMaps = 'Google Maps';
 var mrgTxtOSMe      = 'Edite este mapa';
 var mrgTxtOSMd      = 'Verificar dados';
 var mrgTxtNote      = 'Localizou um erro ou algo faltando? Informe pra gente 😃';
