@@ -114,7 +114,7 @@ mrgHeatMap.addTo(map);
 	info.update = function (props) {
 		this._div.innerHTML = '<h4>Mapa de Ribeirão Grande</h4>' 
 		+   CriarBotao(HrefFromURLPlus("sobre/",     "fas fa-info-circle mrg-button-md","Saiba mais"," <span class='mrg-fg-white'>Sobre</span>",''))
-		+   CriarBotao(HrefFromURLPlus("gps/",     "fas fa-download mrg-button-md","Baixe o aplicativo"," <span class='mrg-fg-white'>Baixe o aplicativo</span>",''))
+		+   CriarBotao(HrefFromURLPlus("busca/",     "fas fa-search mrg-button-md","Faça uma Pesquisa de Ruas ou busca por CEP"," <span class='mrg-fg-white'>Busca por Rua/CEP</span>",''))
 	};
 
 	info.addTo(map);
